@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>Guard.NET</id>
+		<version>$version$</version>
+		<title>Guard.NET</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<summary>$description$</summary>
+		<description>$description$</description>		
+		<copyright>$copyright$</copyright>
+		<licenseUrl>https://github.com/george-pancescu/Guard/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/george-pancescu/Guard</projectUrl>
+	  <language>en-US</language>
+	  <tags>Guard, preconditions, code contracts</tags>
+    <dependencies>
+    </dependencies>
+    <releaseNotes>
+      First version
+    </releaseNotes>
+	</metadata>
+	<files>
+	</files>
+</package>
