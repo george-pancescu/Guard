@@ -20,7 +20,7 @@ namespace Guard.UnitTests
             string errorMessage, 
             string expectedErrorMessage)
         {
-            Should.Throw<ArgumentException>(
+            Should.Throw<ArgumentOutOfRangeException>(
                 () => Guard.NotGreaterThan(input, threshold, paramName, errorMessage),
                 expectedErrorMessage);
         }
