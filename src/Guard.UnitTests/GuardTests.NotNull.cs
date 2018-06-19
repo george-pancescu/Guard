@@ -8,11 +8,11 @@ namespace Guard.UnitTests
     public partial class GuardTests
     {
         [Test]
-        [TestCase("paramName", "custom error message", "custom error message")]
-        [TestCase("paramName", null, "[paramName] cannot be Null.")]
-        [TestCase("", null, "[parameter] cannot be Null.")]
-        [TestCase(" ", null, "[parameter] cannot be Null.")]
-        [TestCase(null, null, "[parameter] cannot be Null.")]
+        [TestCase("paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
+        [TestCase("paramName", null, "[paramName] cannot be Null.\r\nParameter name: paramName")]
+        [TestCase("", null, "[parameter] cannot be Null.\r\nParameter name: parameter")]
+        [TestCase(" ", null, "[parameter] cannot be Null.\r\nParameter name: parameter")]
+        [TestCase(null, null, "[parameter] cannot be Null.\r\nParameter name: parameter")]
         public void NotNull_InvalidInputDefaultException_ThrowsException(
             string paramName, 
             string errorMessage, 
@@ -21,20 +21,22 @@ namespace Guard.UnitTests
             object input = null;
 
             Should.Throw<ArgumentNullException>(
-                () => Guard.NotNull(input, paramName, errorMessage),
-                expectedErrorMessage);
+                    () => Guard.NotNull(input, paramName, errorMessage))
+                .Message
+                .ShouldBe(expectedErrorMessage);
         }
 
         [Test]
         public void NotNull_InvalidInputCustomException_ThrowsException()
         {
             object input = null;
-            var expectedErrorMessage = "error message";
+            var expectedErrorMessage = "error message\r\nParameter name: parameter";
             var exception = new Exception(expectedErrorMessage);
 
             Should.Throw<Exception>(
-                () => Guard.NotNull(input, exception),
-                expectedErrorMessage);
+                    () => Guard.NotNull(input, exception))
+                .Message
+                .ShouldBe(expectedErrorMessage);
         }
 
         [Test]

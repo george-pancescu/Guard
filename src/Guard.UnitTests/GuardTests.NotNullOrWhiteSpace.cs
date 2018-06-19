@@ -8,21 +8,21 @@ namespace Guard.UnitTests
     public partial class GuardTests
     {
         [Test]
-        [TestCase(null, "paramName", "custom error message", "custom error message")]
-        [TestCase(null, "paramName", null, "[paramName] cannot be Null.")]
-        [TestCase(null, "", null, "[parameter] cannot be Null.")]
-        [TestCase(null, " ", null, "[parameter] cannot be Null.")]
-        [TestCase(null, null, null, "[parameter] cannot be Null.")]
-        [TestCase("", "paramName", "custom error message", "custom error message")]
-        [TestCase("", "paramName", null, "[paramName] cannot be Null.")]
-        [TestCase("", "", null, "[parameter] cannot be Null.")]
-        [TestCase("", " ", null, "[parameter] cannot be Null.")]
-        [TestCase("", null, null, "[parameter] cannot be Null.")]
-        [TestCase(" ", "paramName", "custom error message", "custom error message")]
-        [TestCase(" ", "paramName", null, "[paramName] cannot be Null.")]
-        [TestCase(" ", "", null, "[parameter] cannot be Null.")]
-        [TestCase(" ", " ", null, "[parameter] cannot be Null.")]
-        [TestCase(" ", null, null, "[parameter] cannot be Null.")]
+        [TestCase(null, "paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
+        [TestCase(null, "paramName", null, "[paramName] cannot be Null, empty or white-space.\r\nParameter name: paramName")]
+        [TestCase(null, "", null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
+        [TestCase(null, " ", null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
+        [TestCase(null, null, null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
+        [TestCase("", "paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
+        [TestCase("", "paramName", null, "[paramName] cannot be Null, empty or white-space.\r\nParameter name: paramName")]
+        [TestCase("", "", null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
+        [TestCase("", " ", null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
+        [TestCase("", null, null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
+        [TestCase(" ", "paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
+        [TestCase(" ", "paramName", null, "[paramName] cannot be Null, empty or white-space.\r\nParameter name: paramName")]
+        [TestCase(" ", "", null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
+        [TestCase(" ", " ", null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
+        [TestCase(" ", null, null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
         public void NotNullOrWhitespace_InvalidInputDefaultException_ThrowsException(
             string input,
             string paramName, 
@@ -30,20 +30,22 @@ namespace Guard.UnitTests
             string expectedErrorMessage)
         {
             Should.Throw<ArgumentException>(
-                () => Guard.NotNullOrWhitespace(input, paramName, errorMessage),
-                expectedErrorMessage);
+                    () => Guard.NotNullOrWhitespace(input, paramName, errorMessage))
+                .Message
+                .ShouldBe(expectedErrorMessage);
         }
 
         [Test]
         public void NotNullOrWhitespace_InvalidInputCustomException_ThrowsException()
         {
             string input = null;
-            var expectedErrorMessage = "error message";
+            var expectedErrorMessage = "error message\r\nParameter name: parameter";
             var exception = new Exception(expectedErrorMessage);
 
             Should.Throw<Exception>(
-                () => Guard.NotNullOrWhitespace(input, exception),
-                expectedErrorMessage);
+                    () => Guard.NotNullOrWhitespace(input, exception))
+                .Message
+                .ShouldBe(expectedErrorMessage);
         }
 
         [Test]

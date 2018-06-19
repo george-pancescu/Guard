@@ -8,7 +8,7 @@ namespace Guard
     /// </summary>
     public static class Guard
     {
-        private const string GenericParameterName = "[parameter]";
+        private const string GenericParameterName = "parameter";
 
         /// <summary>
         /// Guards the specified <see cref="param"/> from being null by 
@@ -61,8 +61,19 @@ namespace Guard
         /// </summary>
         /// <param name="param">The param to be checked</param>
         /// <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
+        public static void NotNullOrWhitespace(string param, string paramName)
+        {
+            NotNullOrWhitespace(param, paramName, null);
+        }
+
+        /// <summary>
+        /// Guards the specified <see cref="param"/> from being null, empty or white-space by 
+        /// throwing an <see cref="ArgumentException"/> when the precondition has not been met
+        /// </summary>
+        /// <param name="param">The param to be checked</param>
+        /// <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
         /// <param name="message">The message that will be included in the exception</param>
-        public static void NotNullOrWhitespace(string param, string paramName, string message = null)
+        public static void NotNullOrWhitespace(string param, string paramName, string message)
         {
             if (String.IsNullOrWhiteSpace(paramName))
             {
@@ -74,7 +85,7 @@ namespace Guard
                 message = $"[{paramName}] cannot be Null, empty or white-space.";
             }
 
-            var argumentException = new ArgumentException(paramName, message);
+            var argumentException = new ArgumentException(message, paramName);
             Guard.NotNullOrWhitespace(param, argumentException);
         }
 
@@ -112,10 +123,10 @@ namespace Guard
 
             if (message == null)
             {
-                message = $"[{paramName}] cannot be Null, empty or white-space.";
+                message = $"[{paramName}] cannot be Null or empty.";
             }
 
-            var argumentException = new ArgumentException(paramName, message);
+            var argumentException = new ArgumentException(message, paramName);
             Guard.NotNullOrEmpty(param, argumentException);
         }
 

@@ -8,11 +8,11 @@ namespace Guard.UnitTests
     public partial class GuardTests
     {
         [Test]
-        [TestCase(11, 10, "paramName", "custom error message", "custom error message")]
-        [TestCase(11, 10, "paramName", null, "[paramName] cannot be Null.")]
-        [TestCase(11, 10, "", null, "[parameter] cannot be Null.")]
-        [TestCase(11, 10, " ", null, "[parameter] cannot be Null.")]
-        [TestCase(11, 10, null, null, "[parameter] cannot be Null.")]
+        [TestCase(11, 10, "paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
+        [TestCase(11, 10, "paramName", null, "[paramName] is out of range.\r\nParameter name: paramName")]
+        [TestCase(11, 10, "", null, "[parameter] is out of range.\r\nParameter name: parameter")]
+        [TestCase(11, 10, " ", null, "[parameter] is out of range.\r\nParameter name: parameter")]
+        [TestCase(11, 10, null, null, "[parameter] is out of range.\r\nParameter name: parameter")]
         public void NotGreaterThan_InvalidInputDefaultException_ThrowsException(
             int input,
             int threshold,
@@ -21,8 +21,9 @@ namespace Guard.UnitTests
             string expectedErrorMessage)
         {
             Should.Throw<ArgumentOutOfRangeException>(
-                () => Guard.NotGreaterThan(input, threshold, paramName, errorMessage),
-                expectedErrorMessage);
+                    () => Guard.NotGreaterThan(input, threshold, paramName, errorMessage))
+                .Message
+                .ShouldBe(expectedErrorMessage);
         }
 
         [Test]
@@ -30,12 +31,13 @@ namespace Guard.UnitTests
         {
             int input = 11;
             int threshold = 10;
-            var expectedErrorMessage = "error message";
+            var expectedErrorMessage = "error message\r\nParameter name: parameter";
             var exception = new Exception(expectedErrorMessage);
 
             Should.Throw<Exception>(
-                () => Guard.NotGreaterThan(input, threshold, exception),
-                expectedErrorMessage);
+                    () => Guard.NotGreaterThan(input, threshold, exception))
+                .Message
+                .ShouldBe(expectedErrorMessage);
         }
 
         [Test]

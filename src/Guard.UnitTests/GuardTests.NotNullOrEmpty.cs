@@ -8,16 +8,16 @@ namespace Guard.UnitTests
     public partial class GuardTests
     {
         [Test]
-        [TestCase(null, "paramName", "custom error message", "custom error message")]
-        [TestCase(null, "paramName", null, "[paramName] cannot be Null.")]
-        [TestCase(null, "", null, "[parameter] cannot be Null.")]
-        [TestCase(null, " ", null, "[parameter] cannot be Null.")]
-        [TestCase(null, null, null, "[parameter] cannot be Null.")]
-        [TestCase("", "paramName", "custom error message", "custom error message")]
-        [TestCase("", "paramName", null, "[paramName] cannot be Null.")]
-        [TestCase("", "", null, "[parameter] cannot be Null.")]
-        [TestCase("", " ", null, "[parameter] cannot be Null.")]
-        [TestCase("", null, null, "[parameter] cannot be Null.")]
+        [TestCase(null, "paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
+        [TestCase(null, "paramName", null, "[paramName] cannot be Null or empty.\r\nParameter name: paramName")]
+        [TestCase(null, "", null, "[parameter] cannot be Null or empty.\r\nParameter name: parameter")]
+        [TestCase(null, " ", null, "[parameter] cannot be Null or empty.\r\nParameter name: parameter")]
+        [TestCase(null, null, null, "[parameter] cannot be Null or empty.\r\nParameter name: parameter")]
+        [TestCase("", "paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
+        [TestCase("", "paramName", null, "[paramName] cannot be Null or empty.\r\nParameter name: paramName")]
+        [TestCase("", "", null, "[parameter] cannot be Null or empty.\r\nParameter name: parameter")]
+        [TestCase("", " ", null, "[parameter] cannot be Null or empty.\r\nParameter name: parameter")]
+        [TestCase("", null, null, "[parameter] cannot be Null or empty.\r\nParameter name: parameter")]
         public void NotNullOrEmpty_InvalidInputDefaultException_ThrowsException(
             string input,
             string paramName, 
@@ -25,8 +25,9 @@ namespace Guard.UnitTests
             string expectedErrorMessage)
         {
             Should.Throw<ArgumentException>(
-                () => Guard.NotNullOrEmpty(input, paramName, errorMessage),
-                expectedErrorMessage);
+                    () => Guard.NotNullOrEmpty(input, paramName, errorMessage))
+                .Message
+                .ShouldBe(expectedErrorMessage);
         }
 
         [Test]
@@ -37,8 +38,9 @@ namespace Guard.UnitTests
             var exception = new Exception(expectedErrorMessage);
 
             Should.Throw<Exception>(
-                () => Guard.NotNullOrEmpty(input, exception),
-                expectedErrorMessage);
+                    () => Guard.NotNullOrEmpty(input, exception))
+                .Message
+                .ShouldBe(expectedErrorMessage);
         }
 
         [Test]
