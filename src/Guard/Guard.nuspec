@@ -18,9 +18,8 @@
     </dependencies>
     <releaseNotes>
       Fixes:
-        - issue with Guard.NotNullOrWhitespace overload obstruction:
-          Guard.NotNullOrWhitespace optionally allows you to specify a guard message.
-          However, it is being enforced by the compiler because there is an overload which is interfering.
+      - issue with Guard.NotNull/NotNullOrEmpty/NotLessThan/NotGreaterThan overload obstruction:
+      They optionally allow you to specify a guard message - however, it is being enforced by the compiler because there is an overload which is interfering.
     </releaseNotes>
 	</metadata>
 	<files>

@@ -16,9 +16,22 @@ namespace Guard
         /// </summary>
         /// <typeparam name="TParam">The param Type (any reference type)</typeparam>
         /// <param name="param">The param to be checked</param>
+        /// <param name="paramName">The name of the param to be checked, that will be included in the exception</param>        
+        public static void NotNull<TParam>(TParam param, string paramName)
+            where TParam : class
+        {
+            NotNull(param, paramName, null);
+        }
+
+        /// <summary>
+        /// Guards the specified <see cref="param"/> from being null by 
+        /// throwing an <see cref="ArgumentNullException"/> when the precondition has not been met
+        /// </summary>
+        /// <typeparam name="TParam">The param Type (any reference type)</typeparam>
+        /// <param name="param">The param to be checked</param>
         /// <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
         /// <param name="message">The message that will be included in the exception</param>
-        public static void NotNull<TParam>(TParam param, string paramName, string message = null)
+        public static void NotNull<TParam>(TParam param, string paramName, string message)
             where TParam : class
         {
             if (String.IsNullOrWhiteSpace(paramName))
@@ -113,8 +126,19 @@ namespace Guard
         /// </summary>
         /// <param name="param">The param to be checked</param>
         /// <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
+        public static void NotNullOrEmpty(string param, string paramName)
+        {
+            NotNullOrEmpty(param, paramName, null);
+        }
+
+        /// <summary>
+        /// Guards the specified <see cref="param"/> from being null or empty (white-space allowed) by 
+        /// throwing an <see cref="ArgumentException"/> when the precondition has not been met
+        /// </summary>
+        /// <param name="param">The param to be checked</param>
+        /// <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
         /// <param name="message">The message that will be included in the exception</param>
-        public static void NotNullOrEmpty(string param, string paramName, string message = null)
+        public static void NotNullOrEmpty(string param, string paramName, string message)
         {
             if (String.IsNullOrWhiteSpace(paramName))
             {
@@ -156,8 +180,22 @@ namespace Guard
         /// <param name="param">The param to be checked</param>
         /// <param name="threshold">The threshold against which the param will be checked</param>
         /// <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
+        public static void NotLessThan<TParam>(TParam param, TParam threshold, string paramName)
+            where TParam : struct
+        {
+            NotLessThan(param, threshold, paramName, null);
+        }
+
+        /// <summary>
+        /// Guards the specified <see cref="param"/> from being less than the specified <see cref="threshold"/> by 
+        /// throwing an <see cref="ArgumentOutOfRangeException"/> when the precondition has not been met
+        /// </summary>
+        /// <typeparam name="TParam">The param Type (any value type)</typeparam>
+        /// <param name="param">The param to be checked</param>
+        /// <param name="threshold">The threshold against which the param will be checked</param>
+        /// <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
         /// <param name="message">The message that will be included in the exception</param>
-        public static void NotLessThan<TParam>(TParam param, TParam threshold, string paramName, string message = null)
+        public static void NotLessThan<TParam>(TParam param, TParam threshold, string paramName, string message)
             where TParam : struct
         {
             if (String.IsNullOrWhiteSpace(paramName))
@@ -205,8 +243,22 @@ namespace Guard
         /// <param name="param">The param to be checked</param>
         /// <param name="threshold">The threshold against which the param will be checked</param>
         /// <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
+        public static void NotGreaterThan<TParam>(TParam param, TParam threshold, string paramName)
+            where TParam : struct
+        {
+            NotGreaterThan(param, threshold, paramName, null);
+        }
+
+        /// <summary>
+        /// Guards the specified <see cref="param"/> from being greater than the specified <see cref="threshold"/> by 
+        /// throwing an <see cref="ArgumentOutOfRangeException"/> when the precondition has not been met
+        /// </summary>
+        /// <typeparam name="TParam">The param Type (any value type)</typeparam>
+        /// <param name="param">The param to be checked</param>
+        /// <param name="threshold">The threshold against which the param will be checked</param>
+        /// <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
         /// <param name="message">The message that will be included in the exception</param>
-        public static void NotGreaterThan<TParam>(TParam param, TParam threshold, string paramName, string message = null)
+        public static void NotGreaterThan<TParam>(TParam param, TParam threshold, string paramName, string message)
             where TParam : struct
         {
             if (String.IsNullOrWhiteSpace(paramName))
