@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net45;net461;netstandard1.3;netstandard2.0;netcoreapp2.1</TargetFrameworks>    
@@ -12,7 +12,8 @@
     <PackageLicenseUrl>https://github.com/george-pancescu/Guard/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/george-pancescu/Guard</PackageProjectUrl>
     <PackageTags>Guard, preconditions, code contracts</PackageTags>
-    <PackageReleaseNotes>Changed library root namespace to avoid name collision with the Guard class.</PackageReleaseNotes>
+    <PackageReleaseNotes>Changed library root namespace to avoid name collision with the Guard class.
+Added support for .Net Core 2.1 and .Net Standard 2.0</PackageReleaseNotes>
     <Version>1.0.1</Version>
     <AssemblyVersion>1.0.1.0</AssemblyVersion>
     <FileVersion>1.0.1.1</FileVersion>
@@ -21,6 +22,10 @@
     <RootNamespace>GuardNet</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>Guard.Net</PackageId>
+    <Authors>George Pancescu</Authors>
+    <Product>Guard.Net</Product>
+    <NeutralLanguage>en</NeutralLanguage>
+    <RepositoryUrl>https://github.com/george-pancescu/Guard</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
