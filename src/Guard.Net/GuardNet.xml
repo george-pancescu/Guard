@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GuardNet</name>
+    </assembly>
+    <members>
+        <member name="T:GuardNet.Guard">
+            <summary>
+            Facilitates runtime checks of code and allows to define preconditions and invariants within a method.
+            </summary>
+        </member>
+        <member name="M:GuardNet.Guard.NotNull``1(``0,System.String)">
+            <summary>
+            Guards the specified <paramref name="param"/> from being null by 
+            throwing an <see cref="T:System.ArgumentNullException"/> when the precondition has not been met
+            </summary>
+            <typeparam name="TParam">The param Type (any reference type)</typeparam>
+            <param name="param">The param to be checked</param>
+            <param name="paramName">The name of the param to be checked, that will be included in the exception</param>        
+        </member>
+        <member name="M:GuardNet.Guard.NotNull``1(``0,System.String,System.String)">
+            <summary>
+            Guards the specified <paramref name="param"/> from being null by 
+            throwing an <see cref="T:System.ArgumentNullException"/> when the precondition has not been met
+            </summary>
+            <typeparam name="TParam">The param Type (any reference type)</typeparam>
+            <param name="param">The param to be checked</param>
+            <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
+            <param name="message">The message that will be included in the exception</param>
+        </member>
+        <member name="M:GuardNet.Guard.NotNull``2(``0,``1)">
+            <summary>
+            Guards the specified <paramref name="param"/> from being null by 
+            throwing an <paramref name="exception"/> when the precondition has not been met
+            </summary>
+            <typeparam name="TParam">The param Type (any reference type)</typeparam>
+            <typeparam name="TException">The exception Type (Exception)</typeparam>
+            <param name="param">The param to be checked</param>
+            <param name="exception">The exception to be thrown when the precondition has not been met</param>
+        </member>
+        <member name="M:GuardNet.Guard.NotNullOrWhitespace(System.String,System.String)">
+            <summary>
+            Guards the specified <paramref name="param"/> from being null, empty or white-space by 
+            throwing an <see cref="T:System.ArgumentException"/> when the precondition has not been met
+            </summary>
+            <param name="param">The param to be checked</param>
+            <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
+        </member>
+        <member name="M:GuardNet.Guard.NotNullOrWhitespace(System.String,System.String,System.String)">
+            <summary>
+            Guards the specified <paramref name="param"/> from being null, empty or white-space by 
+            throwing an <see cref="T:System.ArgumentException"/> when the precondition has not been met
+            </summary>
+            <param name="param">The param to be checked</param>
+            <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
+            <param name="message">The message that will be included in the exception</param>
+        </member>
+        <member name="M:GuardNet.Guard.NotNullOrWhitespace``1(System.String,``0)">
+            <summary>
+            Guards the specified <paramref name="param"/> from being null, empty or white-space by 
+            throwing an <paramref name="exception"/> when the precondition has not been met
+            </summary>
+            <typeparam name="TException">The exception Type (Exception)</typeparam>
+            <param name="param">The param to be checked</param>
+            <param name="exception">The exception to be thrown when the precondition has not been met</param>
+        </member>
+        <member name="M:GuardNet.Guard.NotNullOrEmpty(System.String,System.String)">
+            <summary>
+            Guards the specified <paramref name="param"/> from being null or empty (white-space allowed) by 
+            throwing an <see cref="T:System.ArgumentException"/> when the precondition has not been met
+            </summary>
+            <param name="param">The param to be checked</param>
+            <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
+        </member>
+        <member name="M:GuardNet.Guard.NotNullOrEmpty(System.String,System.String,System.String)">
+            <summary>
+            Guards the specified <paramref name="param"/> from being null or empty (white-space allowed) by 
+            throwing an <see cref="T:System.ArgumentException"/> when the precondition has not been met
+            </summary>
+            <param name="param">The param to be checked</param>
+            <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
+            <param name="message">The message that will be included in the exception</param>
+        </member>
+        <member name="M:GuardNet.Guard.NotNullOrEmpty``1(System.String,``0)">
+            <summary>
+            Guards the specified <paramref name="param"/> from being null or empty (white-space allowed) by 
+            throwing an <paramref name="exception"/> when the precondition has not been met
+            </summary>
+            <typeparam name="TException">The exception Type (Exception)</typeparam>
+            <param name="param">The param to be checked</param>
+            <param name="exception">The exception to be thrown when the precondition has not been met</param>
+        </member>
+        <member name="M:GuardNet.Guard.NotLessThan``1(``0,``0,System.String)">
+            <summary>
+            Guards the specified <paramref name="param"/> from being less than the specified <paramref name="threshold"/> by 
+            throwing an <see cref="T:System.ArgumentOutOfRangeException"/> when the precondition has not been met
+            </summary>
+            <typeparam name="TParam">The param Type (any value type)</typeparam>
+            <param name="param">The param to be checked</param>
+            <param name="threshold">The threshold against which the param will be checked</param>
+            <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
+        </member>
+        <member name="M:GuardNet.Guard.NotLessThan``1(``0,``0,System.String,System.String)">
+            <summary>
+            Guards the specified <paramref name="param"/> from being less than the specified <paramref name="threshold"/> by 
+            throwing an <see cref="T:System.ArgumentOutOfRangeException"/> when the precondition has not been met
+            </summary>
+            <typeparam name="TParam">The param Type (any value type)</typeparam>
+            <param name="param">The param to be checked</param>
+            <param name="threshold">The threshold against which the param will be checked</param>
+            <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
+            <param name="message">The message that will be included in the exception</param>
+        </member>
+        <member name="M:GuardNet.Guard.NotLessThan``2(``0,``0,``1)">
+            <summary>
+            Guards the specified <paramref name="param"/> from being less than the specified <paramref name="threshold"/> by 
+            throwing an <paramref name="exception"/> when the precondition has not been met
+            </summary>
+            <typeparam name="TParam">The param Type (any value type)</typeparam>
+            <typeparam name="TException">The exception Type (Exception)</typeparam>
+            <param name="param">The param to be checked</param>
+            <param name="threshold">The threshold against which the param will be checked</param>
+            <param name="exception">The exception to be thrown when the precondition has not been met</param>
+        </member>
+        <member name="M:GuardNet.Guard.NotGreaterThan``1(``0,``0,System.String)">
+            <summary>
+            Guards the specified <paramref name="param"/> from being greater than the specified <paramref name="threshold"/> by 
+            throwing an <see cref="T:System.ArgumentOutOfRangeException"/> when the precondition has not been met
+            </summary>
+            <typeparam name="TParam">The param Type (any value type)</typeparam>
+            <param name="param">The param to be checked</param>
+            <param name="threshold">The threshold against which the param will be checked</param>
+            <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
+        </member>
+        <member name="M:GuardNet.Guard.NotGreaterThan``1(``0,``0,System.String,System.String)">
+            <summary>
+            Guards the specified <paramref name="param"/> from being greater than the specified <paramref name="threshold"/> by 
+            throwing an <see cref="T:System.ArgumentOutOfRangeException"/> when the precondition has not been met
+            </summary>
+            <typeparam name="TParam">The param Type (any value type)</typeparam>
+            <param name="param">The param to be checked</param>
+            <param name="threshold">The threshold against which the param will be checked</param>
+            <param name="paramName">The name of the param to be checked, that will be included in the exception</param>
+            <param name="message">The message that will be included in the exception</param>
+        </member>
+        <member name="M:GuardNet.Guard.NotGreaterThan``2(``0,``0,``1)">
+            <summary>
+            Guards the specified <paramref name="param"/> from being greater than the specified <paramref name="threshold"/> by 
+            throwing an <paramref name="exception"/> when the precondition has not been met
+            </summary>
+            <typeparam name="TParam">The param Type (any value type)</typeparam>
+            <typeparam name="TException">The exception Type (Exception)</typeparam>
+            <param name="param">The param to be checked</param>
+            <param name="threshold">The threshold against which the param will be checked</param>
+            <param name="exception">The exception to be thrown when the precondition has not been met</param>
+        </member>
+        <member name="M:GuardNet.Guard.For``1(System.Func{System.Boolean},``0)">
+            <summary>
+            Guards the specified <paramref name="predicate"/> from being violated by 
+            throwing an <paramref name="exception"/> when the precondition has not been met
+            </summary>
+            <typeparam name="TException">The exception Type (Exception)</typeparam>
+            <param name="predicate">The precondition that has to be met</param>
+            <param name="exception">The exception to be thrown when the precondition has not been met</param>
+        </member>
+    </members>
+</doc>

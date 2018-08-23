@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Guard.Net
+namespace GuardNet
 {
     /// <summary>
     /// Facilitates runtime checks of code and allows to define preconditions and invariants within a method.
@@ -11,7 +11,7 @@ namespace Guard.Net
         private const string GenericParameterName = "parameter";
 
         /// <summary>
-        /// Guards the specified <see cref="param"/> from being null by 
+        /// Guards the specified <paramref name="param"/> from being null by 
         /// throwing an <see cref="ArgumentNullException"/> when the precondition has not been met
         /// </summary>
         /// <typeparam name="TParam">The param Type (any reference type)</typeparam>
@@ -24,7 +24,7 @@ namespace Guard.Net
         }
 
         /// <summary>
-        /// Guards the specified <see cref="param"/> from being null by 
+        /// Guards the specified <paramref name="param"/> from being null by 
         /// throwing an <see cref="ArgumentNullException"/> when the precondition has not been met
         /// </summary>
         /// <typeparam name="TParam">The param Type (any reference type)</typeparam>
@@ -49,8 +49,8 @@ namespace Guard.Net
         }
 
         /// <summary>
-        /// Guards the specified <see cref="param"/> from being null by 
-        /// throwing an <see cref="TException"/> when the precondition has not been met
+        /// Guards the specified <paramref name="param"/> from being null by 
+        /// throwing an <paramref name="exception"/> when the precondition has not been met
         /// </summary>
         /// <typeparam name="TParam">The param Type (any reference type)</typeparam>
         /// <typeparam name="TException">The exception Type (Exception)</typeparam>
@@ -69,7 +69,7 @@ namespace Guard.Net
         }
 
         /// <summary>
-        /// Guards the specified <see cref="param"/> from being null, empty or white-space by 
+        /// Guards the specified <paramref name="param"/> from being null, empty or white-space by 
         /// throwing an <see cref="ArgumentException"/> when the precondition has not been met
         /// </summary>
         /// <param name="param">The param to be checked</param>
@@ -80,7 +80,7 @@ namespace Guard.Net
         }
 
         /// <summary>
-        /// Guards the specified <see cref="param"/> from being null, empty or white-space by 
+        /// Guards the specified <paramref name="param"/> from being null, empty or white-space by 
         /// throwing an <see cref="ArgumentException"/> when the precondition has not been met
         /// </summary>
         /// <param name="param">The param to be checked</param>
@@ -103,8 +103,8 @@ namespace Guard.Net
         }
 
         /// <summary>
-        /// Guards the specified <see cref="param"/> from being null, empty or white-space by 
-        /// throwing an <see cref="TException"/> when the precondition has not been met
+        /// Guards the specified <paramref name="param"/> from being null, empty or white-space by 
+        /// throwing an <paramref name="exception"/> when the precondition has not been met
         /// </summary>
         /// <typeparam name="TException">The exception Type (Exception)</typeparam>
         /// <param name="param">The param to be checked</param>
@@ -121,7 +121,7 @@ namespace Guard.Net
         }
 
         /// <summary>
-        /// Guards the specified <see cref="param"/> from being null or empty (white-space allowed) by 
+        /// Guards the specified <paramref name="param"/> from being null or empty (white-space allowed) by 
         /// throwing an <see cref="ArgumentException"/> when the precondition has not been met
         /// </summary>
         /// <param name="param">The param to be checked</param>
@@ -132,7 +132,7 @@ namespace Guard.Net
         }
 
         /// <summary>
-        /// Guards the specified <see cref="param"/> from being null or empty (white-space allowed) by 
+        /// Guards the specified <paramref name="param"/> from being null or empty (white-space allowed) by 
         /// throwing an <see cref="ArgumentException"/> when the precondition has not been met
         /// </summary>
         /// <param name="param">The param to be checked</param>
@@ -155,8 +155,8 @@ namespace Guard.Net
         }
 
         /// <summary>
-        /// Guards the specified <see cref="param"/> from being null or empty (white-space allowed) by 
-        /// throwing an <see cref="TException"/> when the precondition has not been met
+        /// Guards the specified <paramref name="param"/> from being null or empty (white-space allowed) by 
+        /// throwing an <paramref name="exception"/> when the precondition has not been met
         /// </summary>
         /// <typeparam name="TException">The exception Type (Exception)</typeparam>
         /// <param name="param">The param to be checked</param>
@@ -173,7 +173,7 @@ namespace Guard.Net
         }
 
         /// <summary>
-        /// Guards the specified <see cref="param"/> from being less than the specified <see cref="threshold"/> by 
+        /// Guards the specified <paramref name="param"/> from being less than the specified <paramref name="threshold"/> by 
         /// throwing an <see cref="ArgumentOutOfRangeException"/> when the precondition has not been met
         /// </summary>
         /// <typeparam name="TParam">The param Type (any value type)</typeparam>
@@ -187,7 +187,7 @@ namespace Guard.Net
         }
 
         /// <summary>
-        /// Guards the specified <see cref="param"/> from being less than the specified <see cref="threshold"/> by 
+        /// Guards the specified <paramref name="param"/> from being less than the specified <paramref name="threshold"/> by 
         /// throwing an <see cref="ArgumentOutOfRangeException"/> when the precondition has not been met
         /// </summary>
         /// <typeparam name="TParam">The param Type (any value type)</typeparam>
@@ -213,8 +213,8 @@ namespace Guard.Net
         }
 
         /// <summary>
-        /// Guards the specified <see cref="param"/> from being less than the specified <see cref="threshold"/> by 
-        /// throwing an <see cref="TException"/> when the precondition has not been met
+        /// Guards the specified <paramref name="param"/> from being less than the specified <paramref name="threshold"/> by 
+        /// throwing an <paramref name="exception"/> when the precondition has not been met
         /// </summary>
         /// <typeparam name="TParam">The param Type (any value type)</typeparam>
         /// <typeparam name="TException">The exception Type (Exception)</typeparam>
@@ -236,7 +236,7 @@ namespace Guard.Net
         }
 
         /// <summary>
-        /// Guards the specified <see cref="param"/> from being greater than the specified <see cref="threshold"/> by 
+        /// Guards the specified <paramref name="param"/> from being greater than the specified <paramref name="threshold"/> by 
         /// throwing an <see cref="ArgumentOutOfRangeException"/> when the precondition has not been met
         /// </summary>
         /// <typeparam name="TParam">The param Type (any value type)</typeparam>
@@ -250,7 +250,7 @@ namespace Guard.Net
         }
 
         /// <summary>
-        /// Guards the specified <see cref="param"/> from being greater than the specified <see cref="threshold"/> by 
+        /// Guards the specified <paramref name="param"/> from being greater than the specified <paramref name="threshold"/> by 
         /// throwing an <see cref="ArgumentOutOfRangeException"/> when the precondition has not been met
         /// </summary>
         /// <typeparam name="TParam">The param Type (any value type)</typeparam>
@@ -276,8 +276,8 @@ namespace Guard.Net
         }
 
         /// <summary>
-        /// Guards the specified <see cref="param"/> from being greater than the specified <see cref="threshold"/> by 
-        /// throwing an <see cref="TException"/> when the precondition has not been met
+        /// Guards the specified <paramref name="param"/> from being greater than the specified <paramref name="threshold"/> by 
+        /// throwing an <paramref name="exception"/> when the precondition has not been met
         /// </summary>
         /// <typeparam name="TParam">The param Type (any value type)</typeparam>
         /// <typeparam name="TException">The exception Type (Exception)</typeparam>
@@ -299,8 +299,8 @@ namespace Guard.Net
         }
 
         /// <summary>
-        /// Guards the specified <see cref="predicate"/> from being violated by 
-        /// throwing an <see cref="TException"/> when the precondition has not been met
+        /// Guards the specified <paramref name="predicate"/> from being violated by 
+        /// throwing an <paramref name="exception"/> when the precondition has not been met
         /// </summary>
         /// <typeparam name="TException">The exception Type (Exception)</typeparam>
         /// <param name="predicate">The precondition that has to be met</param>
