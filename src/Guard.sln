@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guard", "Guard\Guard.csproj", "{0465DC0D-8505-4CBE-8102-7B84C0DFE9B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guard.Net", "Guard\Guard.Net.csproj", "{0465DC0D-8505-4CBE-8102-7B84C0DFE9B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guard.UnitTests", "Guard.UnitTests\Guard.UnitTests.csproj", "{459E9C80-F2DF-418C-904D-14D90A5C7DB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guard.Net.UnitTests", "Guard.UnitTests\Guard.Net.UnitTests.csproj", "{459E9C80-F2DF-418C-904D-14D90A5C7DB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

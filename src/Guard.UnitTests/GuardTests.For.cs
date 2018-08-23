@@ -4,7 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using Shouldly;
 
-namespace Guard.UnitTests
+namespace Guard.Net.UnitTests
 {
     [TestFixture]
     public partial class GuardTests

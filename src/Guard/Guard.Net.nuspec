@@ -17,9 +17,7 @@
     <dependencies>
     </dependencies>
     <releaseNotes>
-      Fixes:
-      - issue with Guard.NotNull/NotNullOrEmpty/NotLessThan/NotGreaterThan overload obstruction:
-      They optionally allow you to specify a guard message - however, it is being enforced by the compiler because there is an overload which is interfering.
+      Changed library root namespace to avoid name collision with the Guard class.
     </releaseNotes>
 	</metadata>
 	<files>

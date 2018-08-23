@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Guard
+namespace Guard.Net
 {
     /// <summary>
     /// Facilitates runtime checks of code and allows to define preconditions and invariants within a method.
