@@ -60,12 +60,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GuardTests.NotIsMatch.cs" />
     <Compile Include="GuardTests.For.cs" />
     <Compile Include="GuardTests.NotGreaterThan.cs" />
     <Compile Include="GuardTests.NotLessThan.cs" />
     <Compile Include="GuardTests.NotNull.cs" />
     <Compile Include="GuardTests.NotNullOrEmpty.cs" />
     <Compile Include="GuardTests.NotNullOrWhiteSpace.cs" />
+    <Compile Include="GuardTests.NotEqualTo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace GuardNet
 {
@@ -296,6 +297,91 @@ namespace GuardNet
             var comparer = Comparer<TParam>.Default;
 
             Guard.For(() => comparer.Compare(param, threshold) > 0, exception);
+        }
+
+        /// <summary>
+        /// Guards the specified <paramref name="param"/> from not being equal to the specified <paramref name="value"/> by 
+        /// throwing an <paramref name="exception"/> when the precondition has not been met
+        /// </summary>
+        /// <typeparam name="TParam">The param Type (any value type)</typeparam>
+        /// <typeparam name="TException">The exception Type (Exception)</typeparam>
+        /// <param name="param">The param to be checked</param>
+        /// <param name="value">The value against which the param will be checked for equality</param>
+        /// <param name="exception">The exception to be thrown when the precondition has not been met</param>
+        public static void NotEqualTo<TParam, TException>(TParam param, TParam @value, TException exception)
+            where TException : Exception
+        {
+            if (exception == null)
+            {
+                throw new ArgumentNullException(nameof(exception));
+            }
+
+            var comparer = EqualityComparer<TParam>.Default;
+
+            Guard.For(() => !comparer.Equals(param, @value), exception);
+        }
+
+        /// <summary>
+        /// Guards the specified <paramref name="param"/> from not matching the specified regular expression (<paramref name="regexPattern"/>) 
+        /// by throwing an <paramref name="exception"/> when the precondition has not been met
+        /// </summary>
+        /// <typeparam name="TException"></typeparam>
+        /// <param name="param">The param to be checked</param>
+        /// <param name="regexPattern">The regular expression pattern</param>
+        /// <param name="exception">The exception to be thrown when the precondition has not been met</param>
+        /// <param name="regexOptions">(optional) The regular expression options to be used during the matching process</param>
+        public static void NotIsMatch<TException>(
+            string param, 
+            string regexPattern, 
+            TException exception, 
+            RegexOptions regexOptions = RegexOptions.None)
+            where TException : Exception
+        {
+            if (param == null)
+            {
+                throw new ArgumentNullException(nameof(param));
+            }
+
+            if (regexPattern == null)
+            {
+                throw new ArgumentNullException(nameof(regexPattern));
+            }
+
+            if (exception == null)
+            {
+                throw new ArgumentNullException(nameof(exception));
+            }
+
+            Guard.For(() => !Regex.IsMatch(param, regexPattern, regexOptions), exception);
+        }
+
+        /// <summary>
+        /// Guards the specified <paramref name="param"/> from not being contained in the specified <paramref name="value"/> 
+        /// by throwing an <paramref name="exception"/> when the precondition has not been met
+        /// </summary>
+        /// <typeparam name="TException"></typeparam>
+        /// <param name="param">The param to be checked</param>
+        /// <param name="value">The value in which the param will be searched for</param>
+        /// <param name="exception">The exception to be thrown when the precondition has not been met</param>
+        public static void NotContains<TException>(string param, string value, TException exception)
+            where TException : Exception
+        {
+            if (param == null)
+            {
+                throw new ArgumentNullException(nameof(param));
+            }
+
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
+            if (exception == null)
+            {
+                throw new ArgumentNullException(nameof(exception));
+            }
+
+            Guard.For(() => param.Contains(value), exception);
         }
 
         /// <summary>
