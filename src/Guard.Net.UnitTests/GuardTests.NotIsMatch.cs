@@ -42,6 +42,46 @@ namespace GuardNet.UnitTests
         }
 
         [Test]
+        [TestCase("paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
+        [TestCase("paramName", null, "[paramName] does not match the pattern [1234].\r\nParameter name: paramName")]
+        [TestCase("", null, "[parameter] does not match the pattern [1234].\r\nParameter name: parameter")]
+        [TestCase(" ", null, "[parameter] does not match the pattern [1234].\r\nParameter name: parameter")]
+        [TestCase(null, null, "[parameter] does not match the pattern [1234].\r\nParameter name: parameter")]
+        public void NotIsMatch_InvalidInputDefaultException_ThrowsException(
+            string paramName,
+            string errorMessage,
+            string expectedErrorMessage)
+        {
+            string input = "123";
+            string pattern = "1234";
+
+            Should.Throw<ArgumentException>(() => Guard.NotIsMatch(input, paramName, pattern, errorMessage))
+                .Message
+                .ShouldBe(expectedErrorMessage);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("custom message")]
+        public void NotIsMatch_InvalidNullCustomException2_ThrowsException(string message)
+        {
+            string input = "123";
+            string pattern = "1234";
+
+            if (message == null)
+            {
+                Should.Throw<InvalidOperationException>(() => Guard.NotIsMatch<InvalidOperationException>(input, pattern));
+            }
+            else
+            {
+                Should
+                    .Throw<InvalidOperationException>(() => Guard.NotIsMatch<InvalidOperationException>(input, pattern, message))
+                    .Message
+                    .ShouldBe(message);
+            }
+        }
+
+        [Test]
         public void NotIsMatch_InvalidInputNullException_ThrowsException()
         {
             string input = "";

@@ -9,10 +9,10 @@ namespace GuardNet.UnitTests
     {
         [Test]
         [TestCase(11, 10, "paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
-        [TestCase(11, 10, "paramName", null, "[paramName] is out of range.\r\nParameter name: paramName")]
-        [TestCase(11, 10, "", null, "[parameter] is out of range.\r\nParameter name: parameter")]
-        [TestCase(11, 10, " ", null, "[parameter] is out of range.\r\nParameter name: parameter")]
-        [TestCase(11, 10, null, null, "[parameter] is out of range.\r\nParameter name: parameter")]
+        [TestCase(11, 10, "paramName", null, "[paramName] cannot be greater than 10.\r\nParameter name: paramName")]
+        [TestCase(11, 10, "", null, "[parameter] cannot be greater than 10.\r\nParameter name: parameter")]
+        [TestCase(11, 10, " ", null, "[parameter] cannot be greater than 10.\r\nParameter name: parameter")]
+        [TestCase(11, 10, null, null, "[parameter] cannot be greater than 10.\r\nParameter name: parameter")]
         public void NotGreaterThan_InvalidInputDefaultException_ThrowsException(
             int input,
             int threshold,
@@ -48,6 +48,27 @@ namespace GuardNet.UnitTests
             Exception exception = null;
 
             Should.Throw<ArgumentNullException>(() => Guard.NotGreaterThan(input, threshold, exception));
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("custom message")]
+        public void NotGreaterThan_InvalidNullCustomException2_ThrowsException(string message)
+        {
+            int input = 11;
+            int threshold = 10;
+
+            if (message == null)
+            {
+                Should.Throw<InvalidOperationException>(() => Guard.NotGreaterThan<int, InvalidOperationException>(input, threshold));
+            }
+            else
+            {
+                Should
+                    .Throw<InvalidOperationException>(() => Guard.NotGreaterThan<int, InvalidOperationException>(input, threshold, message))
+                    .Message
+                    .ShouldBe(message);
+            }
         }
 
         [Test]

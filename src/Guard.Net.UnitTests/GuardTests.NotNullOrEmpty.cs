@@ -53,6 +53,26 @@ namespace GuardNet.UnitTests
         }
 
         [Test]
+        [TestCase(null, null)]
+        [TestCase("", null)]
+        [TestCase(null, "custom message")]
+        [TestCase("", "custom message")]
+        public void NotNullOrEmpty_InvalidNullCustomException2_ThrowsException(string input, string message)
+        {
+            if (message == null)
+            {
+                Should.Throw<InvalidOperationException>(() => Guard.NotNullOrEmpty<InvalidOperationException>(input));
+            }
+            else
+            {
+                Should
+                    .Throw<InvalidOperationException>(() => Guard.NotNullOrEmpty<InvalidOperationException>(input, message))
+                    .Message
+                    .ShouldBe(message);
+            }
+        }
+
+        [Test]
         [TestCase("input")]
         [TestCase(" ")]
         public void NotNullOrEmpty_ValidInput_DoesNotThrowException(string input)

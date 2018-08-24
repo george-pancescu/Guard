@@ -30,6 +30,27 @@ namespace GuardNet.UnitTests
         }
 
         [Test]
+        [TestCase(null)]
+        [TestCase("custom message")]
+        public void For_InvalidInput2_ThrowsException(string message)
+        {
+            var items = new List<int>();
+            bool Predicate() => !items.Any();
+
+            if (message == null)
+            {
+                Should.Throw<InvalidOperationException>(() => Guard.For<InvalidOperationException>(Predicate));
+            }
+            else
+            {
+                Should
+                    .Throw<InvalidOperationException>(() => Guard.For<InvalidOperationException>(Predicate, message))
+                    .Message
+                    .ShouldBe(message);
+            }
+        }
+
+        [Test]
         [TestCase(0, 0)]
         [TestCase(2, 0)]
         public void For_ValidInput_DoesNotThrowException(int input, int threshold)

@@ -52,7 +52,7 @@ namespace GuardNet.UnitTests
         [TestCase(null, null)]
         [TestCase(11, 11)]
         [TestCase("11", "11")]
-        public void NotEqualTo_InvalidInput3_DoesNotThrowException(object input, object @value)
+        public void NotEqualTo_ValidInput3_DoesNotThrowException(object input, object @value)
         {
             Exception exception = new Exception();
 

@@ -19,9 +19,8 @@ namespace GuardNet.UnitTests
             string expectedErrorMessage)
         {
             object input = null;
-
-            Should.Throw<ArgumentNullException>(
-                    () => Guard.NotNull(input, paramName, errorMessage))
+            
+            Should.Throw<ArgumentNullException>(() => Guard.NotNull(input, paramName, errorMessage))
                 .Message
                 .ShouldBe(expectedErrorMessage);
         }
@@ -33,8 +32,7 @@ namespace GuardNet.UnitTests
             var expectedErrorMessage = "error message\r\nParameter name: parameter";
             var exception = new Exception(expectedErrorMessage);
 
-            Should.Throw<Exception>(
-                    () => Guard.NotNull(input, exception))
+            Should.Throw<Exception>(() => Guard.NotNull(input, exception))
                 .Message
                 .ShouldBe(expectedErrorMessage);
         }
@@ -46,6 +44,26 @@ namespace GuardNet.UnitTests
             Exception exception = null;
 
             Should.Throw<ArgumentNullException>(() => Guard.NotNull(input, exception));
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("custom message")]
+        public void NotNull_InvalidNullCustomException2_ThrowsException(string message)
+        {
+            object input = null;
+
+            if (message == null)
+            {
+                Should.Throw<InvalidOperationException>(() => Guard.NotNull<object, InvalidOperationException>(input));
+            }
+            else
+            {
+                Should
+                    .Throw<InvalidOperationException>(() => Guard.NotNull<object, InvalidOperationException>(input, message))
+                    .Message
+                    .ShouldBe(message);
+            }
         }
 
         [Test]
