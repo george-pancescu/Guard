@@ -6,7 +6,7 @@ namespace GuardNet
 {
     public static partial class Guard
     {
-        private const string NotEmptyTemplate = @"[{0}] cannot be empty (should contain at least one element).";
+        private const string NotAnyTemplate = @"[{0}] cannot be empty (should contain at least one element).";
 
         /// <summary>
         /// Guards the specified <paramref name="param"/> from containing no elements by 
@@ -37,7 +37,7 @@ namespace GuardNet
 
             if (message == null)
             {
-                message = String.Format(NotEmptyTemplate, paramName);
+                message = String.Format(NotAnyTemplate, paramName);
             }
 
             var argumentException = new ArgumentException(message, paramName);
@@ -53,7 +53,7 @@ namespace GuardNet
         public static void NotAny<T, TException>(IEnumerable<T> param)
             where TException : Exception, new()
         {
-            var message = String.Format(NotEmptyTemplate, GenericParameterName);
+            var message = String.Format(NotAnyTemplate, GenericParameterName);
 
             Guard.NotAny<T, TException>(param, message);
         }
@@ -70,7 +70,7 @@ namespace GuardNet
         {
             if (message == null)
             {
-                message = String.Format(NotEmptyTemplate, GenericParameterName);
+                message = String.Format(NotAnyTemplate, GenericParameterName);
             }
 
             TException exception = CreateException<TException>(message);
