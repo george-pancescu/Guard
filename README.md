@@ -13,9 +13,10 @@ public void AddUser(User user)
 {
     Guard.NotNull(user, nameof(user), "optional custom error message");  // throws ArgumentNullException
 	
-	// OR use an explicit Exception
-	// var invalidOperationException = new InvalidOperationException("custom message");
-	// Guard.NotNull(user, invalidOperationException); 
+    // OR use an explicit Exception
+    
+    var invalidOperationException = new InvalidOperationException("custom message");
+    Guard.NotNull(user, invalidOperationException); 
     
     ...
 
@@ -27,9 +28,10 @@ public void GetUserByName(string name)
 {
     Guard.NotNullOrWhitespace(name, nameof(name), "optional custom error message"); // throws ArgumentException
 
-	// OR use an explicit Exception
-	// var invalidOperationException = new InvalidOperationException("custom message");
-	// Guard.NotNullOrWhitespace(userName, invalidOperationException);
+    // OR use an explicit Exception
+    
+    var invalidOperationException = new InvalidOperationException("custom message");
+    Guard.NotNullOrWhitespace(userName, invalidOperationException);
     
     ...
 	
@@ -39,11 +41,12 @@ public void GetUserByName(string name)
 ```<language>
 public void GetUsers(int pageSize)
 {
-	Guard.NotGreaterThan(pageSize, _maxPageSize, nameof(pageSize), "optional custom error message"); // throws ArgumentOutOfRangeException
+    Guard.NotGreaterThan(pageSize, _maxPageSize, nameof(pageSize), "optional custom error message"); // throws ArgumentOutOfRangeException
 
-	// OR use an explicit Exception
-	// var invalidOperationException = new InvalidOperationException("custom message");
-	// Guard.NotGreaterThan(pageSize, _maxPageSize, invalidOperationException);
+    // OR use an explicit Exception
+    
+    var invalidOperationException = new InvalidOperationException("custom message");
+    Guard.NotGreaterThan(pageSize, _maxPageSize, invalidOperationException);
     
     ...
 	
