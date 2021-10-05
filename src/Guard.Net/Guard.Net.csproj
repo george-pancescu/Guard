@@ -9,7 +9,7 @@
     <Description>A simple library that facilitates runtime checks of code and allows to define preconditions and invariants within a method.</Description>
     <Company>George Pancescu</Company>
     <Copyright>Copyright ©George Pancescu 2021</Copyright>
-    <PackageLicenseUrl>https://github.com/george-pancescu/Guard/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/george-pancescu/Guard</PackageProjectUrl>
     <PackageTags>Guard, preconditions, code contracts</PackageTags>
     <PackageReleaseNotes>Migrated to .NET 5</PackageReleaseNotes>
@@ -25,5 +25,7 @@
     <Product>Guard.Net</Product>
     <NeutralLanguage>en</NeutralLanguage>
     <RepositoryUrl>https://github.com/george-pancescu/Guard</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseFile></PackageLicenseFile>
   </PropertyGroup> 
 </Project>
