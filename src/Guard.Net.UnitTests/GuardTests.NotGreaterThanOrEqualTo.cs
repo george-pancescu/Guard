@@ -7,13 +7,16 @@ namespace GuardNet.UnitTests
     [TestFixture]
     public partial class GuardTests
     {
+        const string ParamNameMessage = " (Parameter 'paramName')";
+        const string ParameterMessage = " (Parameter 'parameter')";
+
         [Test]
-        [TestCase(11, 10, "paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
-        [TestCase(11, 10, "paramName", null, "[paramName] cannot be greater than or equal to 10.\r\nParameter name: paramName")]
-        [TestCase(11, 10, "", null, "[parameter] cannot be greater than or equal to 10.\r\nParameter name: parameter")]
-        [TestCase(11, 10, " ", null, "[parameter] cannot be greater than or equal to 10.\r\nParameter name: parameter")]
-        [TestCase(11, 10, null, null, "[parameter] cannot be greater than or equal to 10.\r\nParameter name: parameter")]
-        [TestCase(10, 10, null, null, "[parameter] cannot be greater than or equal to 10.\r\nParameter name: parameter")]
+        [TestCase(11, 10, "paramName", "custom error message", "custom error message" + ParamNameMessage)]
+        [TestCase(11, 10, "paramName", null, "[paramName] cannot be greater than or equal to 10." + ParamNameMessage)]
+        [TestCase(11, 10, "", null, "[parameter] cannot be greater than or equal to 10." + ParameterMessage)]
+        [TestCase(11, 10, " ", null, "[parameter] cannot be greater than or equal to 10." + ParameterMessage)]
+        [TestCase(11, 10, null, null, "[parameter] cannot be greater than or equal to 10." + ParameterMessage)]
+        [TestCase(10, 10, null, null, "[parameter] cannot be greater than or equal to 10." + ParameterMessage)]
         public void NotGreaterThanOrEqualTo_InvalidInputDefaultException_ThrowsException(
             int input,
             int threshold,
@@ -32,7 +35,7 @@ namespace GuardNet.UnitTests
         [TestCase(10, 10)]
         public void NotGreaterThanOrEqualTo_InvalidInputCustomException_ThrowsException(int input, int threshold)
         {
-            var expectedErrorMessage = "error message\r\nParameter name: parameter";
+            var expectedErrorMessage = "error message" + ParameterMessage;
             var exception = new Exception(expectedErrorMessage);
 
             Should.Throw<Exception>(

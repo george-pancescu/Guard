@@ -65,7 +65,7 @@ public void UpdateEmailAddress(int userId, string newEmailAddress)
 ```
 
 
-## Instalation
+## Installation
 The Guard class can be used by installing **Guard.NET nuget package** available [here](https://www.nuget.org/packages/Guard.NET/).
 
 ```<language>

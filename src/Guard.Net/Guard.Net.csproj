@@ -1,22 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45;net461;netstandard1.3;netstandard2.0;netcoreapp2.1</TargetFrameworks>    
+    <TargetFramework>net5.0</TargetFramework>
     <DefaultLanguage>en-US</DefaultLanguage>
   </PropertyGroup>
 
   <PropertyGroup>
     <Description>A simple library that facilitates runtime checks of code and allows to define preconditions and invariants within a method.</Description>
     <Company>George Pancescu</Company>
-    <Copyright>Copyright ©George Pancescu 2018</Copyright>
+    <Copyright>Copyright ©George Pancescu 2021</Copyright>
     <PackageLicenseUrl>https://github.com/george-pancescu/Guard/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/george-pancescu/Guard</PackageProjectUrl>
     <PackageTags>Guard, preconditions, code contracts</PackageTags>
-    <PackageReleaseNotes>Added new Guards (NotIsMatch, NotEqualTom, NotAny, NotLessThanOrEqualTo, NotGreaterThanOrEqualTo).
-Added new overloads for all Guards, allowing to specify a custom Exception as a generic parameter (without passing any concrete instance).</PackageReleaseNotes>
-    <Version>1.2.0</Version>
-    <AssemblyVersion>1.2.0.0</AssemblyVersion>
-    <FileVersion>1.2.0.0</FileVersion>
+    <PackageReleaseNotes>Migrated to .NET 5</PackageReleaseNotes>
+    <Version>2.0.0</Version>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyName>GuardNet</AssemblyName>
     <RootNamespace>GuardNet</RootNamespace>
@@ -26,20 +25,5 @@ Added new overloads for all Guards, allowing to specify a custom Exception as a 
     <Product>Guard.Net</Product>
     <NeutralLanguage>en</NeutralLanguage>
     <RepositoryUrl>https://github.com/george-pancescu/Guard</RepositoryUrl>
-  </PropertyGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1'">
-  </ItemGroup>  
+  </PropertyGroup> 
 </Project>

@@ -8,16 +8,16 @@ namespace GuardNet.UnitTests
     public partial class GuardTests
     {
         [Test]
-        [TestCase(null, "paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
-        [TestCase(null, "paramName", null, "[paramName] cannot be Null or empty.\r\nParameter name: paramName")]
-        [TestCase(null, "", null, "[parameter] cannot be Null or empty.\r\nParameter name: parameter")]
-        [TestCase(null, " ", null, "[parameter] cannot be Null or empty.\r\nParameter name: parameter")]
-        [TestCase(null, null, null, "[parameter] cannot be Null or empty.\r\nParameter name: parameter")]
-        [TestCase("", "paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
-        [TestCase("", "paramName", null, "[paramName] cannot be Null or empty.\r\nParameter name: paramName")]
-        [TestCase("", "", null, "[parameter] cannot be Null or empty.\r\nParameter name: parameter")]
-        [TestCase("", " ", null, "[parameter] cannot be Null or empty.\r\nParameter name: parameter")]
-        [TestCase("", null, null, "[parameter] cannot be Null or empty.\r\nParameter name: parameter")]
+        [TestCase(null, "paramName", "custom error message", "custom error message" + ParamNameMessage)]
+        [TestCase(null, "paramName", null, "[paramName] cannot be Null or empty." + ParamNameMessage)]
+        [TestCase(null, "", null, "[parameter] cannot be Null or empty." + ParameterMessage)]
+        [TestCase(null, " ", null, "[parameter] cannot be Null or empty." + ParameterMessage)]
+        [TestCase(null, null, null, "[parameter] cannot be Null or empty." + ParameterMessage)]
+        [TestCase("", "paramName", "custom error message", "custom error message" + ParamNameMessage)]
+        [TestCase("", "paramName", null, "[paramName] cannot be Null or empty." + ParamNameMessage)]
+        [TestCase("", "", null, "[parameter] cannot be Null or empty." + ParameterMessage)]
+        [TestCase("", " ", null, "[parameter] cannot be Null or empty." + ParameterMessage)]
+        [TestCase("", null, null, "[parameter] cannot be Null or empty." + ParameterMessage)]
         public void NotNullOrEmpty_InvalidInputDefaultException_ThrowsException(
             string input,
             string paramName, 

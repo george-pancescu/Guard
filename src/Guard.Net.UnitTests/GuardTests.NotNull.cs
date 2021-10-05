@@ -8,11 +8,11 @@ namespace GuardNet.UnitTests
     public partial class GuardTests
     {
         [Test]
-        [TestCase("paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
-        [TestCase("paramName", null, "[paramName] cannot be Null.\r\nParameter name: paramName")]
-        [TestCase("", null, "[parameter] cannot be Null.\r\nParameter name: parameter")]
-        [TestCase(" ", null, "[parameter] cannot be Null.\r\nParameter name: parameter")]
-        [TestCase(null, null, "[parameter] cannot be Null.\r\nParameter name: parameter")]
+        [TestCase("paramName", "custom error message", "custom error message" + ParamNameMessage)]
+        [TestCase("paramName", null, "[paramName] cannot be Null." + ParamNameMessage)]
+        [TestCase("", null, "[parameter] cannot be Null." + ParameterMessage)]
+        [TestCase(" ", null, "[parameter] cannot be Null." + ParameterMessage)]
+        [TestCase(null, null, "[parameter] cannot be Null." + ParameterMessage)]
         public void NotNull_InvalidInputDefaultException_ThrowsException(
             string paramName, 
             string errorMessage, 
@@ -29,7 +29,7 @@ namespace GuardNet.UnitTests
         public void NotNull_InvalidInputCustomException_ThrowsException()
         {
             object input = null;
-            var expectedErrorMessage = "error message\r\nParameter name: parameter";
+            var expectedErrorMessage = "error message" + ParamNameMessage;
             var exception = new Exception(expectedErrorMessage);
 
             Should.Throw<Exception>(() => Guard.NotNull(input, exception))
