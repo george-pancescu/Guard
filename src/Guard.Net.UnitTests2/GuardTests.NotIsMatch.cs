@@ -42,11 +42,11 @@ namespace GuardNet.UnitTests
         }
 
         [Test]
-        [TestCase("paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
-        [TestCase("paramName", null, "[paramName] does not match the pattern [1234].\r\nParameter name: paramName")]
-        [TestCase("", null, "[parameter] does not match the pattern [1234].\r\nParameter name: parameter")]
-        [TestCase(" ", null, "[parameter] does not match the pattern [1234].\r\nParameter name: parameter")]
-        [TestCase(null, null, "[parameter] does not match the pattern [1234].\r\nParameter name: parameter")]
+        [TestCase("paramName", "custom error message", "custom error message" + ParamNameMessage)]
+        [TestCase("paramName", null, "[paramName] does not match the pattern [1234]." + ParamNameMessage)]
+        [TestCase("", null, "[parameter] does not match the pattern [1234]." + ParameterMessage)]
+        [TestCase(" ", null, "[parameter] does not match the pattern [1234]." + ParameterMessage)]
+        [TestCase(null, null, "[parameter] does not match the pattern [1234]." + ParameterMessage)]
         public void NotIsMatch_InvalidInputDefaultException_ThrowsException(
             string paramName,
             string errorMessage,

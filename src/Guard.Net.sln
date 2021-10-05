@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2003
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guard.Net", "Guard.Net\Guard.Net.csproj", "{58F9FA33-2D3E-432B-AAD6-136DB798CBF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guard.Net", "Guard.Net\Guard.Net.csproj", "{58F9FA33-2D3E-432B-AAD6-136DB798CBF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guard.Net.UnitTests", "Guard.Net.UnitTests\Guard.Net.UnitTests.csproj", "{401B4622-5213-4204-A8E7-DC9260E164A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guard.Net.UnitTests2", "Guard.Net.UnitTests2\Guard.Net.UnitTests2.csproj", "{5D81DC71-B95B-4F46-9B80-711C20D7370F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{58F9FA33-2D3E-432B-AAD6-136DB798CBF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58F9FA33-2D3E-432B-AAD6-136DB798CBF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58F9FA33-2D3E-432B-AAD6-136DB798CBF4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{401B4622-5213-4204-A8E7-DC9260E164A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{401B4622-5213-4204-A8E7-DC9260E164A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{401B4622-5213-4204-A8E7-DC9260E164A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{401B4622-5213-4204-A8E7-DC9260E164A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D81DC71-B95B-4F46-9B80-711C20D7370F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D81DC71-B95B-4F46-9B80-711C20D7370F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D81DC71-B95B-4F46-9B80-711C20D7370F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D81DC71-B95B-4F46-9B80-711C20D7370F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

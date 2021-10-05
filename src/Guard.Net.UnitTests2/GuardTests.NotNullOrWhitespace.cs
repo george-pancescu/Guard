@@ -8,21 +8,21 @@ namespace GuardNet.UnitTests
     public partial class GuardTests
     {
         [Test]
-        [TestCase(null, "paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
-        [TestCase(null, "paramName", null, "[paramName] cannot be Null, empty or white-space.\r\nParameter name: paramName")]
-        [TestCase(null, "", null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
-        [TestCase(null, " ", null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
-        [TestCase(null, null, null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
-        [TestCase("", "paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
-        [TestCase("", "paramName", null, "[paramName] cannot be Null, empty or white-space.\r\nParameter name: paramName")]
-        [TestCase("", "", null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
-        [TestCase("", " ", null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
-        [TestCase("", null, null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
-        [TestCase(" ", "paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
-        [TestCase(" ", "paramName", null, "[paramName] cannot be Null, empty or white-space.\r\nParameter name: paramName")]
-        [TestCase(" ", "", null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
-        [TestCase(" ", " ", null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
-        [TestCase(" ", null, null, "[parameter] cannot be Null, empty or white-space.\r\nParameter name: parameter")]
+        [TestCase(null, "paramName", "custom error message", "custom error message" + ParamNameMessage)]
+        [TestCase(null, "paramName", null, "[paramName] cannot be Null, empty or white-space." + ParamNameMessage)]
+        [TestCase(null, "", null, "[parameter] cannot be Null, empty or white-space." + ParameterMessage)]
+        [TestCase(null, " ", null, "[parameter] cannot be Null, empty or white-space." + ParameterMessage)]
+        [TestCase(null, null, null, "[parameter] cannot be Null, empty or white-space." + ParameterMessage)]
+        [TestCase("", "paramName", "custom error message", "custom error message" + ParamNameMessage)]
+        [TestCase("", "paramName", null, "[paramName] cannot be Null, empty or white-space." + ParamNameMessage)]
+        [TestCase("", "", null, "[parameter] cannot be Null, empty or white-space." + ParameterMessage)]
+        [TestCase("", " ", null, "[parameter] cannot be Null, empty or white-space." + ParameterMessage)]
+        [TestCase("", null, null, "[parameter] cannot be Null, empty or white-space." + ParameterMessage)]
+        [TestCase(" ", "paramName", "custom error message", "custom error message" + ParamNameMessage)]
+        [TestCase(" ", "paramName", null, "[paramName] cannot be Null, empty or white-space." + ParamNameMessage)]
+        [TestCase(" ", "", null, "[parameter] cannot be Null, empty or white-space." + ParameterMessage)]
+        [TestCase(" ", " ", null, "[parameter] cannot be Null, empty or white-space." + ParameterMessage)]
+        [TestCase(" ", null, null, "[parameter] cannot be Null, empty or white-space." + ParameterMessage)]
         public void NotNullOrWhitespace_InvalidInputDefaultException_ThrowsException(
             string input,
             string paramName, 
@@ -39,7 +39,7 @@ namespace GuardNet.UnitTests
         public void NotNullOrWhitespace_InvalidInputCustomException_ThrowsException()
         {
             string input = null;
-            var expectedErrorMessage = "error message\r\nParameter name: parameter";
+            var expectedErrorMessage = "error message" + ParameterMessage;
             var exception = new Exception(expectedErrorMessage);
 
             Should.Throw<Exception>(

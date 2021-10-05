@@ -8,12 +8,12 @@ namespace GuardNet.UnitTests
     public partial class GuardTests
     {
         [Test]
-        [TestCase(-1, 0, "paramName", "custom error message", "custom error message\r\nParameter name: paramName")]
-        [TestCase(-1, 0, "paramName", null, "[paramName] cannot be less than or equal to 0.\r\nParameter name: paramName")]
-        [TestCase(-1, 0, "", null, "[parameter] cannot be less than or equal to 0.\r\nParameter name: parameter")]
-        [TestCase(-1, 0, " ", null, "[parameter] cannot be less than or equal to 0.\r\nParameter name: parameter")]
-        [TestCase(-1, 0, null, null, "[parameter] cannot be less than or equal to 0.\r\nParameter name: parameter")]
-        [TestCase(0, 0, null, null, "[parameter] cannot be less than or equal to 0.\r\nParameter name: parameter")]
+        [TestCase(-1, 0, "paramName", "custom error message", "custom error message" + ParamNameMessage)]
+        [TestCase(-1, 0, "paramName", null, "[paramName] cannot be less than or equal to 0." + ParamNameMessage)]
+        [TestCase(-1, 0, "", null, "[parameter] cannot be less than or equal to 0." + ParameterMessage)]
+        [TestCase(-1, 0, " ", null, "[parameter] cannot be less than or equal to 0." + ParameterMessage)]
+        [TestCase(-1, 0, null, null, "[parameter] cannot be less than or equal to 0." + ParameterMessage)]
+        [TestCase(0, 0, null, null, "[parameter] cannot be less than or equal to 0." + ParameterMessage)]
         public void NotLessThanOrEqualTo_InvalidInputDefaultException_ThrowsException(
             int input,
             int threshold,
