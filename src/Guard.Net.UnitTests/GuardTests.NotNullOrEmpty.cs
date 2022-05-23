@@ -8,22 +8,46 @@ namespace GuardNet.UnitTests
     public partial class GuardTests
     {
         [Test]
-        [TestCase(null, "paramName", "custom error message", "custom error message" + ParamNameMessage)]
-        [TestCase(null, "paramName", null, "[paramName] cannot be Null or empty." + ParamNameMessage)]
-        [TestCase(null, "", null, "[parameter] cannot be Null or empty." + ParameterMessage)]
-        [TestCase(null, " ", null, "[parameter] cannot be Null or empty." + ParameterMessage)]
-        [TestCase(null, null, null, "[parameter] cannot be Null or empty." + ParameterMessage)]
-        [TestCase("", "paramName", "custom error message", "custom error message" + ParamNameMessage)]
-        [TestCase("", "paramName", null, "[paramName] cannot be Null or empty." + ParamNameMessage)]
-        [TestCase("", "", null, "[parameter] cannot be Null or empty." + ParameterMessage)]
-        [TestCase("", " ", null, "[parameter] cannot be Null or empty." + ParameterMessage)]
-        [TestCase("", null, null, "[parameter] cannot be Null or empty." + ParameterMessage)]
+        [TestCase(null, "", null, "[parameter] cannot be Null or empty.")]
+        [TestCase(null, " ", null, "[parameter] cannot be Null or empty.")]
+        [TestCase(null, null, null, "[parameter] cannot be Null or empty.")]
+        [TestCase("", "", null, "[parameter] cannot be Null or empty.")]
+        [TestCase("", " ", null, "[parameter] cannot be Null or empty.")]
+        [TestCase("", null, null, "[parameter] cannot be Null or empty.")]
         public void NotNullOrEmpty_InvalidInputDefaultException_ThrowsException(
             string input,
-            string paramName, 
-            string errorMessage, 
-            string expectedErrorMessage)
+            string paramName,
+            string errorMessage,
+            string expectedErrorMessageBase)
         {
+            string expectedErrorMessage = null;
+#if NET5_0_OR_GREATER
+            expectedErrorMessage = expectedErrorMessageBase + ParameterMessageNet50;
+#else
+            expectedErrorMessage = expectedErrorMessageBase + Environment.NewLine + ParameterMessageNet4X;
+#endif
+            Should.Throw<ArgumentException>(
+                    () => Guard.NotNullOrEmpty(input, paramName, errorMessage))
+                .Message
+                .ShouldBe(expectedErrorMessage);
+        }
+        [Test]
+        [TestCase(null, "paramName", "custom error message", "custom error message")]
+        [TestCase(null, "paramName", null, "[paramName] cannot be Null or empty.")]
+        [TestCase("", "paramName", "custom error message", "custom error message")]
+        [TestCase("", "paramName", null, "[paramName] cannot be Null or empty.")]
+        public void NotNullOrEmpty_InvalidInputDefaultExceptionGivenParamName_ThrowsException(
+            string input,
+            string paramName,
+            string errorMessage,
+            string expectedErrorMessageBase)
+        {
+            string expectedErrorMessage = null;
+#if NET5_0_OR_GREATER
+            expectedErrorMessage = expectedErrorMessageBase + ParamNameMessageNet50;
+#else
+            expectedErrorMessage = expectedErrorMessageBase + Environment.NewLine + ParamNameMessageNet4X;
+#endif
             Should.Throw<ArgumentException>(
                     () => Guard.NotNullOrEmpty(input, paramName, errorMessage))
                 .Message

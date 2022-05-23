@@ -10,9 +10,9 @@ namespace GuardNet.UnitTests
         [Test]
         public void NotEqualTo_InvalidInput_ThrowsException()
         {
-            int input = 11;
-            int @value = 10;
-            Exception exception = new Exception();
+            var input = 11;
+            var @value = 10;
+            var exception = new Exception();
 
             Should.Throw<Exception>(() => Guard.NotEqualTo(input, @value, exception));
         }
@@ -23,7 +23,7 @@ namespace GuardNet.UnitTests
         [TestCase("11", null)]        
         public void NotEqualTo_InvalidInput2_ThrowsException(object input, object @value)
         {
-            Exception exception = new Exception();
+            var exception = new Exception();
 
             Should.Throw<Exception>(() => Guard.NotEqualTo(input, @value, exception));
         }
@@ -31,9 +31,9 @@ namespace GuardNet.UnitTests
         [Test]
         public void NotEqualTo_ValidInput_DoesNotThrowException()
         {
-            int input = 10;
-            int @value = 10;
-            Exception exception = new Exception();
+            var input = 10;
+            var @value = 10;
+            var exception = new Exception();
 
             Should.NotThrow(() => Guard.NotEqualTo(input, @value, exception));
         }
@@ -41,9 +41,9 @@ namespace GuardNet.UnitTests
         [Test]
         public void NotEqualTo_ValidInput2_DoesNotThrowException()
         {
-            string input = "11";
-            string @value = "11";
-            Exception exception = new Exception();
+            var input = "11";
+            var @value = "11";
+            var exception = new Exception();
 
             Should.NotThrow(() => Guard.NotEqualTo(input, @value, exception));
         }
@@ -54,7 +54,7 @@ namespace GuardNet.UnitTests
         [TestCase("11", "11")]
         public void NotEqualTo_ValidInput3_DoesNotThrowException(object input, object @value)
         {
-            Exception exception = new Exception();
+            var exception = new Exception();
 
             Should.NotThrow(() => Guard.NotEqualTo(input, @value, exception));
         }
@@ -62,8 +62,8 @@ namespace GuardNet.UnitTests
         [Test]
         public void NotEqualTo_InvalidInputNullCustomException_ThrowsException()
         {
-            int input = 11;
-            int @value = 10;
+            var input = 11;
+            var @value = 10;
             Exception exception = null;
 
             Should.Throw<ArgumentNullException>(() => Guard.NotEqualTo(input, @value, exception));

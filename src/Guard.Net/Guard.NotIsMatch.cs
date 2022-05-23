@@ -22,7 +22,7 @@ namespace GuardNet
             string regexPattern,
             RegexOptions regexOptions = RegexOptions.None)
         {
-            var message = String.Format(NotIsMatchTemplate, GenericParameterName, regexPattern);
+            var message = string.Format(NotIsMatchTemplate, GenericParameterName, regexPattern);
 
             Guard.NotIsMatch(param, paramName, regexPattern, message, regexOptions);
         }
@@ -44,14 +44,14 @@ namespace GuardNet
             string message,
             RegexOptions regexOptions = RegexOptions.None)
         {
-            if (String.IsNullOrWhiteSpace(paramName))
+            if (string.IsNullOrWhiteSpace(paramName))
             {
                 paramName = GenericParameterName;
             }
 
             if (message == null)
             {
-                message = String.Format(NotIsMatchTemplate, paramName, regexPattern);
+                message = string.Format(NotIsMatchTemplate, paramName, regexPattern);
             }
 
             var argumentException = new ArgumentException(message, paramName);
@@ -73,7 +73,7 @@ namespace GuardNet
             RegexOptions regexOptions = RegexOptions.None)
             where TException : Exception, new()
         {
-            var message = String.Format(NotIsMatchTemplate, GenericParameterName, regexPattern);            
+            var message = string.Format(NotIsMatchTemplate, GenericParameterName, regexPattern);            
 
             Guard.NotIsMatch<TException>(param, regexPattern, message, regexOptions);
         }
@@ -97,10 +97,10 @@ namespace GuardNet
         {
             if (message == null)
             {
-                message = String.Format(NotIsMatchTemplate, GenericParameterName, regexPattern);
+                message = string.Format(NotIsMatchTemplate, GenericParameterName, regexPattern);
             }
 
-            TException exception = CreateException<TException>(message);
+            var exception = CreateException<TException>(message);
 
             Guard.NotIsMatch(param, regexPattern, exception, regexOptions);
         }

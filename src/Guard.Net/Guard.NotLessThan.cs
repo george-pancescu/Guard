@@ -34,14 +34,14 @@ namespace GuardNet
         public static void NotLessThan<TParam>(TParam param, TParam threshold, string paramName, string message)
             where TParam : IComparable<TParam>
         {
-            if (String.IsNullOrWhiteSpace(paramName))
+            if (string.IsNullOrWhiteSpace(paramName))
             {
                 paramName = GenericParameterName;
             }
 
             if (message == null)
             {
-                message = String.Format(NotLessThanTemplate, paramName, threshold);
+                message = string.Format(NotLessThanTemplate, paramName, threshold);
             }
 
             var argumentOutOfRangeException = new ArgumentOutOfRangeException(paramName, message);
@@ -61,7 +61,7 @@ namespace GuardNet
             where TParam : IComparable<TParam>
             where TException : Exception, new()
         {
-            var message = String.Format(NotLessThanTemplate, GenericParameterName, threshold);
+            var message = string.Format(NotLessThanTemplate, GenericParameterName, threshold);
 
             Guard.NotLessThan<TParam, TException>(param, threshold, message);
         }
@@ -82,10 +82,10 @@ namespace GuardNet
         {
             if (message == null)
             {
-                message = String.Format(NotLessThanTemplate, GenericParameterName, threshold);
+                message = string.Format(NotLessThanTemplate, GenericParameterName, threshold);
             }
 
-            TException exception = CreateException<TException>(message);
+            var exception = CreateException<TException>(message);
 
             Guard.NotLessThan(param, threshold, exception);
         }

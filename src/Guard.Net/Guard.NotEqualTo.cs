@@ -40,7 +40,7 @@ namespace GuardNet
                 message = NotEqualToTemplate;
             }
 
-            TException exception = CreateException<TException>(message);
+            var exception = CreateException<TException>(message);
 
             Guard.NotEqualTo(param, value, exception);
         }

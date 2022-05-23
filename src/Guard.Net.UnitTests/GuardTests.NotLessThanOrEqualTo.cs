@@ -8,19 +8,43 @@ namespace GuardNet.UnitTests
     public partial class GuardTests
     {
         [Test]
-        [TestCase(-1, 0, "paramName", "custom error message", "custom error message" + ParamNameMessage)]
-        [TestCase(-1, 0, "paramName", null, "[paramName] cannot be less than or equal to 0." + ParamNameMessage)]
-        [TestCase(-1, 0, "", null, "[parameter] cannot be less than or equal to 0." + ParameterMessage)]
-        [TestCase(-1, 0, " ", null, "[parameter] cannot be less than or equal to 0." + ParameterMessage)]
-        [TestCase(-1, 0, null, null, "[parameter] cannot be less than or equal to 0." + ParameterMessage)]
-        [TestCase(0, 0, null, null, "[parameter] cannot be less than or equal to 0." + ParameterMessage)]
-        public void NotLessThanOrEqualTo_InvalidInputDefaultException_ThrowsException(
+        [TestCase(-1, 0, "", null, "[parameter] cannot be less than or equal to 0.")]
+        [TestCase(-1, 0, " ", null, "[parameter] cannot be less than or equal to 0.")]
+        [TestCase(-1, 0, null, null, "[parameter] cannot be less than or equal to 0.")]
+        [TestCase(0, 0, null, null, "[parameter] cannot be less than or equal to 0.")]
+        public void NotLessThanOrEqualTo_InvalidInputDefaultExceptionEmptyParamName_ThrowsException(
             int input,
             int threshold,
             string paramName,
             string errorMessage,
-            string expectedErrorMessage)
+            string expectedErrorMessageBase)
         {
+            string expectedErrorMessage = null;
+#if NET5_0_OR_GREATER
+            expectedErrorMessage = expectedErrorMessageBase + ParameterMessageNet50;
+#else
+            expectedErrorMessage = expectedErrorMessageBase + Environment.NewLine + ParameterMessageNet4X;
+#endif
+            Should.Throw<ArgumentOutOfRangeException>(() => Guard.NotLessThanOrEqualTo(input, threshold, paramName, errorMessage))
+                .Message
+                .ShouldBe(expectedErrorMessage);
+        }
+        [Test]
+        [TestCase(-1, 0, "paramName", "custom error message", "custom error message")]
+        [TestCase(-1, 0, "paramName", null, "[paramName] cannot be less than or equal to 0.")]
+        public void NotLessThanOrEqualTo_InvalidInputDefaultExceptionGivenParamName_ThrowsException(
+            int input,
+            int threshold,
+            string paramName,
+            string errorMessage,
+            string expectedErrorMessageBase)
+        {
+            string expectedErrorMessage = null;
+#if NET5_0_OR_GREATER
+            expectedErrorMessage = expectedErrorMessageBase + ParamNameMessageNet50;
+#else
+            expectedErrorMessage = expectedErrorMessageBase + Environment.NewLine + ParamNameMessageNet4X;
+#endif
             Should.Throw<ArgumentOutOfRangeException>(() => Guard.NotLessThanOrEqualTo(input, threshold, paramName, errorMessage))
                 .Message
                 .ShouldBe(expectedErrorMessage);

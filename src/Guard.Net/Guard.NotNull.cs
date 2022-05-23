@@ -32,14 +32,14 @@ namespace GuardNet
         public static void NotNull<TParam>(TParam param, string paramName, string message)
             where TParam : class
         {
-            if (String.IsNullOrWhiteSpace(paramName))
+            if (string.IsNullOrWhiteSpace(paramName))
             {
                 paramName = GenericParameterName;
             }
 
             if (message == null)
             {
-                message = String.Format(NotNullMessageTemplate, paramName);
+                message = string.Format(NotNullMessageTemplate, paramName);
             }
 
             var argumentNullException = new ArgumentNullException(paramName, message);
@@ -58,7 +58,7 @@ namespace GuardNet
             where TParam : class
             where TException : Exception, new()
         {
-            var message = String.Format(NotNullMessageTemplate, GenericParameterName);
+            var message = string.Format(NotNullMessageTemplate, GenericParameterName);
 
             Guard.NotNull<TParam, TException>(param, message);
         }
@@ -78,10 +78,10 @@ namespace GuardNet
         {
             if (message == null)
             {
-                message = String.Format(NotNullMessageTemplate, GenericParameterName);
+                message = string.Format(NotNullMessageTemplate, GenericParameterName);
             }
 
-            TException exception = CreateException<TException>(message);
+            var exception = CreateException<TException>(message);
 
             Guard.NotNull(param, exception);
         }

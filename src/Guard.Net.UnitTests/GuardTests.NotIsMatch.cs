@@ -21,7 +21,7 @@ namespace GuardNet.UnitTests
         [TestCase("Aa", @"aa", RegexOptions.IgnoreCase)]
         public void NotIsMatch_ValidInput_DoesNotThrowException(string input, string pattern, RegexOptions options = RegexOptions.None)
         {
-            Exception exception = new Exception();
+            var exception = new Exception();
 
             Should.NotThrow(() => Guard.NotIsMatch(input, pattern, exception, options));
         }
@@ -36,24 +36,49 @@ namespace GuardNet.UnitTests
         [TestCase("Aa", @"aa")]
         public void NotIsMatch_InvalidInput_ThrowsException(string input, string pattern)
         {
-            Exception exception = new Exception();
+            var exception = new Exception();
 
             Should.Throw<Exception>(() => Guard.NotIsMatch(input, pattern, exception));
         }
 
         [Test]
-        [TestCase("paramName", "custom error message", "custom error message" + ParamNameMessage)]
-        [TestCase("paramName", null, "[paramName] does not match the pattern [1234]." + ParamNameMessage)]
-        [TestCase("", null, "[parameter] does not match the pattern [1234]." + ParameterMessage)]
-        [TestCase(" ", null, "[parameter] does not match the pattern [1234]." + ParameterMessage)]
-        [TestCase(null, null, "[parameter] does not match the pattern [1234]." + ParameterMessage)]
-        public void NotIsMatch_InvalidInputDefaultException_ThrowsException(
+        [TestCase("", null, "[parameter] does not match the pattern [1234].")]
+        [TestCase(" ", null, "[parameter] does not match the pattern [1234].")]
+        [TestCase(null, null, "[parameter] does not match the pattern [1234].")]
+        public void NotIsMatch_InvalidInputDefaultExceptionEmptyParamName_ThrowsException(
             string paramName,
             string errorMessage,
-            string expectedErrorMessage)
+            string expectedErrorMessageBase)
         {
-            string input = "123";
-            string pattern = "1234";
+            string expectedErrorMessage = null;
+#if NET5_0_OR_GREATER
+            expectedErrorMessage = expectedErrorMessageBase + ParameterMessageNet50;
+#else
+            expectedErrorMessage = expectedErrorMessageBase + Environment.NewLine + ParameterMessageNet4X;
+#endif
+            const string input = "123";
+            const string pattern = "1234";
+
+            Should.Throw<ArgumentException>(() => Guard.NotIsMatch(input, paramName, pattern, errorMessage))
+                .Message
+                .ShouldBe(expectedErrorMessage);
+        }
+        [Test]
+        [TestCase("paramName", "custom error message", "custom error message")]
+        [TestCase("paramName", null, "[paramName] does not match the pattern [1234].")]
+        public void NotIsMatch_InvalidInputDefaultExceptionGivenParamName_ThrowsException(
+            string paramName,
+            string errorMessage,
+            string expectedErrorMessageBase)
+        {
+            string expectedErrorMessage = null;
+#if NET5_0_OR_GREATER
+            expectedErrorMessage = expectedErrorMessageBase + ParamNameMessageNet50;
+#else
+            expectedErrorMessage = expectedErrorMessageBase + Environment.NewLine + ParamNameMessageNet4X;
+#endif
+            const string input = "123";
+            const string pattern = "1234";
 
             Should.Throw<ArgumentException>(() => Guard.NotIsMatch(input, paramName, pattern, errorMessage))
                 .Message
@@ -65,8 +90,8 @@ namespace GuardNet.UnitTests
         [TestCase("custom message")]
         public void NotIsMatch_InvalidNullCustomException2_ThrowsException(string message)
         {
-            string input = "123";
-            string pattern = "1234";
+            var input = "123";
+            var pattern = "1234";
 
             if (message == null)
             {
@@ -84,8 +109,8 @@ namespace GuardNet.UnitTests
         [Test]
         public void NotIsMatch_InvalidInputNullException_ThrowsException()
         {
-            string input = "";
-            string pattern = "";
+            var input = "";
+            var pattern = "";
             Exception exception = null;
 
             Should.Throw<ArgumentNullException>(() => Guard.NotIsMatch(input, pattern, exception));

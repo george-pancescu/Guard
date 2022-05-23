@@ -8,18 +8,43 @@ namespace GuardNet.UnitTests
     public partial class GuardTests
     {
         [Test]
-        [TestCase(11, 10, "paramName", "custom error message", "custom error message" + ParamNameMessage)]
-        [TestCase(11, 10, "paramName", null, "[paramName] cannot be greater than 10." + ParamNameMessage)]
-        [TestCase(11, 10, "", null, "[parameter] cannot be greater than 10." + ParameterMessage)]
-        [TestCase(11, 10, " ", null, "[parameter] cannot be greater than 10." + ParameterMessage)]
-        [TestCase(11, 10, null, null, "[parameter] cannot be greater than 10." + ParameterMessage)]
-        public void NotGreaterThan_InvalidInputDefaultException_ThrowsException(
+        [TestCase(11, 10, "", null, "[parameter] cannot be greater than 10." )]
+        [TestCase(11, 10, " ", null, "[parameter] cannot be greater than 10." )]
+        [TestCase(11, 10, null, null, "[parameter] cannot be greater than 10." )]
+        public void NotGreaterThan_InvalidInputDefaultExceptionEmptyParamName_ThrowsException(
             int input,
             int threshold,
             string paramName, 
             string errorMessage, 
-            string expectedErrorMessage)
+            string expectedErrorMessageBase)
         {
+            string expectedErrorMessage = null;
+#if NET5_0_OR_GREATER
+            expectedErrorMessage = expectedErrorMessageBase + ParameterMessageNet50;
+#else
+            expectedErrorMessage = expectedErrorMessageBase + "\r\n" + ParameterMessageNet4X;
+#endif
+            Should.Throw<ArgumentOutOfRangeException>(
+                    () => Guard.NotGreaterThan(input, threshold, paramName, errorMessage))
+                .Message
+                .ShouldBe(expectedErrorMessage);
+        }
+        [Test]
+        [TestCase(11, 10, "paramName", "custom error message", "custom error message")]
+        [TestCase(11, 10, "paramName", null, "[paramName] cannot be greater than 10.")]
+        public void NotGreaterThan_InvalidInputDefaultExceptionGivenParamName_ThrowsException(
+            int input,
+            int threshold,
+            string paramName, 
+            string errorMessage, 
+            string expectedErrorMessageBase)
+        {
+            string expectedErrorMessage = null;
+#if NET5_0_OR_GREATER
+            expectedErrorMessage = expectedErrorMessageBase + ParamNameMessageNet50;
+#else
+            expectedErrorMessage = expectedErrorMessageBase + Environment.NewLine + ParamNameMessageNet4X;
+#endif
             Should.Throw<ArgumentOutOfRangeException>(
                     () => Guard.NotGreaterThan(input, threshold, paramName, errorMessage))
                 .Message
@@ -29,9 +54,9 @@ namespace GuardNet.UnitTests
         [Test]
         public void NotGreaterThan_InvalidInputCustomException_ThrowsException()
         {
-            int input = 11;
-            int threshold = 10;
-            var expectedErrorMessage = "error message" + ParamNameMessage; 
+            var input = 11;
+            var threshold = 10;
+            var expectedErrorMessage = "error message" + ParamNameMessageNet50; 
             var exception = new Exception(expectedErrorMessage);
 
             Should.Throw<Exception>(
@@ -43,8 +68,8 @@ namespace GuardNet.UnitTests
         [Test]
         public void NotGreaterThan_InvalidInputNullCustomException_ThrowsException()
         {
-            int input = 11;
-            int threshold = 10;
+            var input = 11;
+            var threshold = 10;
             Exception exception = null;
 
             Should.Throw<ArgumentNullException>(() => Guard.NotGreaterThan(input, threshold, exception));
@@ -55,8 +80,8 @@ namespace GuardNet.UnitTests
         [TestCase("custom message")]
         public void NotGreaterThan_InvalidNullCustomException2_ThrowsException(string message)
         {
-            int input = 11;
-            int threshold = 10;
+            var input = 11;
+            var threshold = 10;
 
             if (message == null)
             {

@@ -8,18 +8,42 @@ namespace GuardNet.UnitTests
     public partial class GuardTests
     {
         [Test]
-        [TestCase("paramName", "custom error message", "custom error message" + ParamNameMessage)]
-        [TestCase("paramName", null, "[paramName] cannot be Null." + ParamNameMessage)]
-        [TestCase("", null, "[parameter] cannot be Null." + ParameterMessage)]
-        [TestCase(" ", null, "[parameter] cannot be Null." + ParameterMessage)]
-        [TestCase(null, null, "[parameter] cannot be Null." + ParameterMessage)]
-        public void NotNull_InvalidInputDefaultException_ThrowsException(
-            string paramName, 
-            string errorMessage, 
-            string expectedErrorMessage)
+        [TestCase("", null, "[parameter] cannot be Null.")]
+        [TestCase(" ", null, "[parameter] cannot be Null.")]
+        [TestCase(null, null, "[parameter] cannot be Null.")]
+        public void NotNull_InvalidInputDefaultExceptionEmptyParamName_ThrowsException(
+            string paramName,
+            string errorMessage,
+            string expectedErrorMessageBase)
         {
+            string expectedErrorMessage = null;
+#if NET5_0_OR_GREATER
+            expectedErrorMessage = expectedErrorMessageBase + ParameterMessageNet50;
+#else
+            expectedErrorMessage = expectedErrorMessageBase + Environment.NewLine + ParameterMessageNet4X;
+#endif
             object input = null;
-            
+
+            Should.Throw<ArgumentNullException>(() => Guard.NotNull(input, paramName, errorMessage))
+                .Message
+                .ShouldBe(expectedErrorMessage);
+        }
+        [Test]
+        [TestCase("paramName", "custom error message", "custom error message")]
+        [TestCase("paramName", null, "[paramName] cannot be Null.")]
+        public void NotNull_InvalidInputDefaultExceptionGivenParamName_ThrowsException(
+            string paramName,
+            string errorMessage,
+            string expectedErrorMessageBase)
+        {
+            string expectedErrorMessage = null;
+#if NET5_0_OR_GREATER
+            expectedErrorMessage = expectedErrorMessageBase + ParamNameMessageNet50;
+#else
+            expectedErrorMessage = expectedErrorMessageBase + Environment.NewLine + ParamNameMessageNet4X;
+#endif
+            object input = null;
+
             Should.Throw<ArgumentNullException>(() => Guard.NotNull(input, paramName, errorMessage))
                 .Message
                 .ShouldBe(expectedErrorMessage);
@@ -29,7 +53,7 @@ namespace GuardNet.UnitTests
         public void NotNull_InvalidInputCustomException_ThrowsException()
         {
             object input = null;
-            var expectedErrorMessage = "error message" + ParamNameMessage;
+            var expectedErrorMessage = "error message" + ParamNameMessageNet50;
             var exception = new Exception(expectedErrorMessage);
 
             Should.Throw<Exception>(() => Guard.NotNull(input, exception))

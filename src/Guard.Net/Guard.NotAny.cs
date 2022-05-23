@@ -30,14 +30,14 @@ namespace GuardNet
         /// <param name="message">The message that will be included in the exception</param>
         public static void NotAny<T>(IEnumerable<T> param, string paramName, string message)
         {
-            if (String.IsNullOrWhiteSpace(paramName))
+            if (string.IsNullOrWhiteSpace(paramName))
             {
                 paramName = GenericParameterName;
             }
 
             if (message == null)
             {
-                message = String.Format(NotAnyTemplate, paramName);
+                message = string.Format(NotAnyTemplate, paramName);
             }
 
             var argumentException = new ArgumentException(message, paramName);
@@ -53,7 +53,7 @@ namespace GuardNet
         public static void NotAny<T, TException>(IEnumerable<T> param)
             where TException : Exception, new()
         {
-            var message = String.Format(NotAnyTemplate, GenericParameterName);
+            var message = string.Format(NotAnyTemplate, GenericParameterName);
 
             Guard.NotAny<T, TException>(param, message);
         }
@@ -70,10 +70,10 @@ namespace GuardNet
         {
             if (message == null)
             {
-                message = String.Format(NotAnyTemplate, GenericParameterName);
+                message = string.Format(NotAnyTemplate, GenericParameterName);
             }
 
-            TException exception = CreateException<TException>(message);
+            var exception = CreateException<TException>(message);
 
             Guard.NotAny(param, exception);
         }

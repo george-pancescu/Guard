@@ -50,7 +50,7 @@ namespace GuardNet.UnitTests
         public void NotAny_NullInput_ThrowsException()
         {
             List<int> items = null;
-            Exception exception = new Exception();
+            var exception = new Exception();
 
             Should.Throw<ArgumentNullException>(() => Guard.NotAny(items, exception));
         }
@@ -58,7 +58,7 @@ namespace GuardNet.UnitTests
         [Test]
         public void NotAny_ValidInput_DoesNotThrowException()
         {
-            List<int> items = new List<int> {1};
+            var items = new List<int> {1};
             Should.NotThrow(() => Guard.NotAny(items, nameof(items)));
         }
     }

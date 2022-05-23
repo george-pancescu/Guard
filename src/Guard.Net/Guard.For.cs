@@ -32,12 +32,7 @@ namespace GuardNet
         public static void For<TException>(Func<bool> predicate, string message)
             where TException : Exception, new()
         {
-            if (message == null)
-            {
-                message = ForMessageTemplate;
-            }
-
-            TException exception = CreateException<TException>(message);
+            var exception = CreateException<TException>(message ?? ForMessageTemplate);
 
             Guard.For(predicate, exception);
         }
@@ -62,7 +57,7 @@ namespace GuardNet
                 throw new ArgumentNullException(nameof(exception));
             }
 
-            bool conditionNotMet = predicate.Invoke();
+            var conditionNotMet = predicate.Invoke();
             if (conditionNotMet)
             {
                 throw exception;
@@ -72,7 +67,7 @@ namespace GuardNet
         private static TException CreateException<TException>(string message = null)
             where TException : Exception, new()
         {
-            if (String.IsNullOrWhiteSpace(message))
+            if (string.IsNullOrWhiteSpace(message))
             {
                 return new TException();
             }

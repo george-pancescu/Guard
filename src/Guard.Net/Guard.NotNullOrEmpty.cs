@@ -28,14 +28,14 @@ namespace GuardNet
         /// <param name="message">The message that will be included in the exception</param>
         public static void NotNullOrEmpty(string param, string paramName, string message)
         {
-            if (String.IsNullOrWhiteSpace(paramName))
+            if (string.IsNullOrWhiteSpace(paramName))
             {
                 paramName = GenericParameterName;
             }
 
             if (message == null)
             {
-                message = String.Format(NotNullOrEmptyTemplate, paramName);
+                message = string.Format(NotNullOrEmptyTemplate, paramName);
             }
 
             var argumentException = new ArgumentException(message, paramName);
@@ -51,7 +51,7 @@ namespace GuardNet
         public static void NotNullOrEmpty<TException>(string param)
             where TException : Exception, new()
         {
-            var message = String.Format(NotNullOrEmptyTemplate, GenericParameterName);
+            var message = string.Format(NotNullOrEmptyTemplate, GenericParameterName);
 
             Guard.NotNullOrEmpty<TException>(param, message);
         }
@@ -68,10 +68,10 @@ namespace GuardNet
         {
             if (message == null)
             {
-                message = String.Format(NotNullOrEmptyTemplate, GenericParameterName);
+                message = string.Format(NotNullOrEmptyTemplate, GenericParameterName);
             }
 
-            TException exception = CreateException<TException>(message);
+            var exception = CreateException<TException>(message);
 
             Guard.NotNullOrEmpty(param, exception);
         }
@@ -92,7 +92,7 @@ namespace GuardNet
                 throw new ArgumentNullException(nameof(exception));
             }
 
-            Guard.For(() => String.IsNullOrEmpty(param), exception);
+            Guard.For(() => string.IsNullOrEmpty(param), exception);
         }
     }
 }
