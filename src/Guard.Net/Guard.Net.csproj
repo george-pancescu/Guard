@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFrameworks>net6.0;net462;net472</TargetFrameworks>
     <DefaultLanguage>en-US</DefaultLanguage>
   </PropertyGroup>
 
@@ -12,10 +12,10 @@
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/george-pancescu/Guard</PackageProjectUrl>
     <PackageTags>Guard, preconditions, code contracts</PackageTags>
-    <PackageReleaseNotes>Migrated to .NET 5</PackageReleaseNotes>
-    <Version>2.0.0</Version>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
+    <PackageReleaseNotes>Migrated to .NET 6</PackageReleaseNotes>
+    <Version>3.0.0</Version>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyName>GuardNet</AssemblyName>
     <RootNamespace>GuardNet</RootNamespace>
