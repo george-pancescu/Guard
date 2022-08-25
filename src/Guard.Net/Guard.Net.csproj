@@ -1,31 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <DefaultLanguage>en-US</DefaultLanguage>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.1;netstandard2.0</TargetFrameworks>
+		<DefaultLanguage>en-US</DefaultLanguage>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <Description>A simple library that facilitates runtime checks of code and allows to define preconditions and invariants within a method.</Description>
-    <Company>George Pancescu</Company>
-    <Copyright>Copyright ©George Pancescu 2021</Copyright>
-    <PackageLicenseUrl></PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/george-pancescu/Guard</PackageProjectUrl>
-    <PackageTags>Guard, preconditions, code contracts</PackageTags>
-    <PackageReleaseNotes>Migrated to .NET 5</PackageReleaseNotes>
-    <Version>2.0.0</Version>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyName>GuardNet</AssemblyName>
-    <RootNamespace>GuardNet</RootNamespace>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PackageId>Guard.Net</PackageId>
-    <Authors>George Pancescu</Authors>
-    <Product>Guard.Net</Product>
-    <NeutralLanguage>en</NeutralLanguage>
-    <RepositoryUrl>https://github.com/george-pancescu/Guard</RepositoryUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageLicenseFile></PackageLicenseFile>
-  </PropertyGroup> 
+	<PropertyGroup>
+		<Description>A simple library that facilitates runtime checks of code and allows to define preconditions and invariants within a method.</Description>
+		<Company>George Pancescu</Company>
+		<Copyright>Copyright ©George Pancescu 2021</Copyright>
+		<PackageLicenseUrl></PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/george-pancescu/Guard</PackageProjectUrl>
+		<PackageTags>Guard, preconditions, code contracts</PackageTags>
+		<PackageReleaseNotes>Migrated to .NET 5</PackageReleaseNotes>
+		<Version>2.0.0</Version>
+		<AssemblyVersion>2.0.0.0</AssemblyVersion>
+		<FileVersion>2.0.0.0</FileVersion>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<AssemblyName>GuardNet</AssemblyName>
+		<RootNamespace>GuardNet</RootNamespace>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PackageId>Guard.Net</PackageId>
+		<Authors>George Pancescu</Authors>
+		<Product>Guard.Net</Product>
+		<NeutralLanguage>en</NeutralLanguage>
+		<RepositoryUrl>https://github.com/george-pancescu/Guard</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageLicenseFile></PackageLicenseFile>
+	</PropertyGroup>
 </Project>
