@@ -1,21 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFrameworks>net6.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
     <DefaultLanguage>en-US</DefaultLanguage>
   </PropertyGroup>
 
   <PropertyGroup>
     <Description>A simple library that facilitates runtime checks of code and allows to define preconditions and invariants within a method.</Description>
     <Company>George Pancescu</Company>
-    <Copyright>Copyright ©George Pancescu 2021</Copyright>
+    <Copyright>Copyright ©George Pancescu 2022</Copyright>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/george-pancescu/Guard</PackageProjectUrl>
     <PackageTags>Guard, preconditions, code contracts</PackageTags>
-    <PackageReleaseNotes>Migrated to .NET 5</PackageReleaseNotes>
-    <Version>2.0.0</Version>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
+    <PackageReleaseNotes>Migrated to .NET 6 and added support for .netstandard 2.1 as well</PackageReleaseNotes>
+    <Version>3.0.0</Version>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyName>GuardNet</AssemblyName>
     <RootNamespace>GuardNet</RootNamespace>
